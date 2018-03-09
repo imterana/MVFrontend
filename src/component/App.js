@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react'
 
 import TaskList from './TaskList'
+import AddEventOverlay from './AddEventOverlay'
 
 class App extends Component {
   constructor(props) {
@@ -55,6 +56,9 @@ class App extends Component {
               </div>
             </Container>
           </Sidebar.Pusher>
+          <AddEventOverlay
+            display={this.state.AddEventDisplay}
+            toggleAddEvent={this.toggleAddEvent} />
       </div>
     );
   }

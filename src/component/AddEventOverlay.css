@@ -1,0 +1,27 @@
+.add-event-overlay {
+  /*opacity:0.95;*/
+  background-color:white;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
+  display: none;
+}
+
+.done-btn {
+  float: right;
+  text-align: center;
+}
+
+.cancel-btn {
+  float: left;
+  text-align: center;
+}
+
+.someDiv {
+  width: auto;
+  height: 2em;
+  background-color: rgb(255, 255, 255);
+}
