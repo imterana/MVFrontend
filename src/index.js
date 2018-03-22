@@ -1,8 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './component/App';
-import registerServiceWorker from './registerServiceWorker';
+// index.web.js
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from './App/App';
+import { AppRegistry } from 'react-native';
+
+// register the app
+AppRegistry.registerComponent('App', () => App);
+
+AppRegistry.runApplication('App', {
+  initialProps: {},
+  rootTag: document.getElementById('root')
+});
