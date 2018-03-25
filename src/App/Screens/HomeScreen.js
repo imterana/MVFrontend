@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Link} from 'react-router-dom';
 
 import {NavigationScreen} from '../Navigation';
+import {IconSymbol} from '../Components';
 
 /**
  * A root home screen with links to subpages.
@@ -17,6 +18,7 @@ export default class HomeScreen extends Component {
       <NavigationScreen hamburger>
         <View style={style.container}>
           <Text>Home Screen</Text>
+          <IconSymbol name='html-five' />
           <Link to='/details'>details</Link>
           <Link to='/about'>about</Link>
         </View>
