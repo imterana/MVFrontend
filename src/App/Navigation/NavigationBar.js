@@ -1,29 +1,76 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {View, Text, StyleSheet} from 'react-native';
 
-import Button from '../Button';
-
+/**
+ * Navigation bar component. Contains a title, and two controls on each side.
+ * @class NavigationBar
+ */
 export class NavigationBar extends Component {
+  static propTypes = {
+    /**
+     * A control on the left side of the bar.
+     */
+    leftControl: PropTypes.element,
+    /**
+     * A control on the right side of the bar.
+     */
+    rightControl: PropTypes.element,
+    /**
+     * Title to be displayed in the middle of the bar.
+     */
+    title: PropTypes.string,
+  }
+
   static defaultProps = {
     leftControl: null,
     rightControl: null,
-    title: "",
+    title: '',
   }
 
+  /**
+   * @return {React.Node} A navigation bar with the title and the controls.
+   */
   render() {
     return (
-      <View style={{ backgroundColor: 'red', marginTop: 0, height: 50, flexDirection: 'row'}}>
-        <View style={{ marginLeft: 0, width: 50, marginTop: 0, marginBottom: 0, height: 50}}>
+      <View style={style.mainContainer}>
+        <View style={style.leftControlContainer}>
           {this.props.leftControl}
         </View>
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={style.titleContainer}>
           <Text>{this.props.title}</Text>
         </View>
-        <View style={{ marginRight: 0, width: 50, marginTop: 0, marginBottom: 0}}>
+        <View style={style.rightControlContainer}>
           {this.props.rightControl}
         </View>
       </View>
     );
   }
 }
+
+const style = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    height: 50,
+    marginTop: 0,
+  },
+  leftControlContainer: {
+    height: 50,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginTop: 0,
+    width: 50,
+  },
+  rightControlContainer: {
+    marginBottom: 0,
+    marginRight: 0,
+    marginTop: 0,
+    width: 50,
+  },
+  titleContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+});

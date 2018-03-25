@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Redirect, BrowserRouter, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history'
+import React, {Component} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {Redirect, BrowserRouter, Route} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 
-import { AboutScreen, DetailsScreen, HomeScreen } from './Screens'
+import {AboutScreen, DetailsScreen, HomeScreen} from './Screens';
 
+/**
+ * The primary app component. Contains all the routes to screens.
+ * @class App
+ */
 export default class App extends Component {
+  /**
+   * @return  {React.Node} Router with all possible routes in it.
+   */
   render() {
     return (
       <BrowserRouter history={createBrowserHistory}>
@@ -27,6 +34,6 @@ const styles = StyleSheet.create({
     height: '100%',
     margin: 0,
     padding: 0,
-    backgroundColor: 'aqua'
-  }
+    backgroundColor: 'aqua',
+  },
 });

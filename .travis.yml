@@ -1,0 +1,12 @@
+language: node
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - npm install
+
+script:
+  - npm run eslint
+  - npm build

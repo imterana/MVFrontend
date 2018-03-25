@@ -1,1 +1,1 @@
-export { default as NavigationScreen } from './NavigationScreen';
+export {default as NavigationScreen} from './NavigationScreen';
