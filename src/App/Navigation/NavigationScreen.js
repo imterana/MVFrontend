@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, View} from 'react-native';
 import {withRouter} from 'react-router-dom';
 
-import { Button } from '../Components';
+import {Button} from '../Components';
 
 import {NavigationBar} from './NavigationBar';
 import SideBar from './SideBar';
