@@ -17,11 +17,11 @@ export default class Button extends Component {
     /**
      * Press handler function.
      */
-    onPress: PropTypes.function,
+    onPress: PropTypes.func,
     /**
      * A style to be passed to internal View component.
      */
-    style: PropTypes.object,
+    style: PropTypes.any,
   }
 
   static defaultProps = {
@@ -37,7 +37,7 @@ export default class Button extends Component {
       return <Text>bad</Text>;
     }
     return (
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} style={style}>
         <View style={style}>
           {this.props.children}
         </View>

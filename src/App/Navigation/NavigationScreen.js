@@ -15,7 +15,7 @@ import SideBar from './SideBar';
  */
 class NavigationScreen extends Component {
   static contextTypes = {
-    router: () => true,
+    router: () => null,
   }
 
   static propTypes = {
