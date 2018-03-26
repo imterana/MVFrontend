@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity} from 'react-native';
 
 /**
  * A custom stylable button component with arbitrary content.
@@ -38,9 +38,7 @@ export default class Button extends Component {
     }
     return (
       <TouchableOpacity onPress={onPress} style={style}>
-        <View style={style}>
-          {this.props.children}
-        </View>
+        {this.props.children}
       </TouchableOpacity>
     );
   }
