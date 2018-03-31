@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Link} from 'react-router-dom';
+import {Link} from '../RouterWrapper';
 
 import {NavigationScreen} from '../Navigation';
 
@@ -17,8 +17,8 @@ export default class HomeScreen extends Component {
       <NavigationScreen hamburger>
         <View style={style.container}>
           <Text>Home Screen</Text>
-          <Link to='/details'>details</Link>
-          <Link to='/about'>about</Link>
+          <Link to='/details'><Text>details</Text></Link>
+          <Link to='/about'><Text>about</Text></Link>
         </View>
       </NavigationScreen>
     );
