@@ -6,7 +6,7 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
  * A custom button used for most buttons in project.
  * Contains text. Can have only one of three default styles.
  */
-export default class StandartButton extends Component {
+export default class Button extends Component {
   static propTypes = {
     /**
      * Label can only be a string.

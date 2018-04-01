@@ -43,6 +43,16 @@ export default class ButtonScreen extends Component {
               {this.state.count !== 0 ? this.state.count: null}
             </Text>
           </View>
+          <View style={style.rowButtons}>
+            <Button
+              label='button1'
+              onPress={onPressFunction}
+              styleName='redBack' />
+            <Button
+              label='button2'
+              onPress={onPressFunction}
+              styleName='redBack' />
+          </View>
       </NavigationScreen>
     );
   }
@@ -57,5 +67,9 @@ const style = StyleSheet.create({
   countContainer: {
     alignItems: 'center',
     padding: 10,
+  },
+  rowButtons: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });
