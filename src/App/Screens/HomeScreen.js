@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Link} from '../RouterWrapper';
 
+import {DefaultText} from '../Components/Text';
 import {NavigationScreen} from '../Navigation';
 import {IconSymbol} from '../Components';
+import StyleConstants from '../StyleConstants';
 
 /**
  * A root home screen with links to subpages.
@@ -17,10 +19,18 @@ export default class HomeScreen extends Component {
     return (
       <NavigationScreen hamburger>
         <View style={style.container}>
-          <Text>Home Screen</Text>
+          <DefaultText>Home Screen</DefaultText>
           <IconSymbol name='html-five' />
-          <Link to='/details'><Text>details</Text></Link>
-          <Link to='/about'><Text>about</Text></Link>
+          <Link to='/details'>
+            <DefaultText>
+              details
+            </DefaultText>
+          </Link>
+          <Link to='/about'>
+            <DefaultText>
+              about
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
@@ -32,5 +42,6 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: StyleConstants.BACKGROUND_COLOR,
   },
 });

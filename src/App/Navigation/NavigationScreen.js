@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 
 import {Button} from '../Components';
 
+import StyleConstants from '../StyleConstants';
 import {NavigationBar} from './NavigationBar';
 import SideBar from './SideBar';
 
@@ -126,7 +127,7 @@ const style = StyleSheet.create({
     padding: 0,
   },
   button: {
-    backgroundColor: 'yellow',
+    backgroundColor: StyleConstants.CONTROL_COLOR,
     height: 50,
     flex: 1,
   },

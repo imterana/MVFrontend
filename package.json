@@ -106,5 +106,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "rnpm": {
+    "assets": [
+	"./assets/"
+    ]
   }
 }
