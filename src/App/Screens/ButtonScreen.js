@@ -37,7 +37,7 @@ export default class ButtonScreen extends Component {
           <Button
             label='button'
             onPress={onPressFunction}
-            styleName='redBack' />
+            background='blue' />
           <View style={style.countContainer}>
             <Text>
               {this.state.count !== 0 ? this.state.count: null}
@@ -47,11 +47,11 @@ export default class ButtonScreen extends Component {
             <Button
               label='button1'
               onPress={onPressFunction}
-              styleName='redBack' />
+              background='green' />
             <Button
               label='button2'
               onPress={onPressFunction}
-              styleName='redBack' />
+              background='red' />
           </View>
       </NavigationScreen>
     );

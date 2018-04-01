@@ -20,36 +20,50 @@ export default class Button extends Component {
      * A style can only be one of three default.
      * It is passed via string, containig its name.
      */
-    styleName: PropTypes.string,
+    background: PropTypes.string,
   }
 
   static defaultProps = {
     label: '',
-    styleName: null,
+    background: 'blue',
   }
 
   /**
    * @return {React.Node} A styled button component.
    */
   render() {
-    const {onPress, styleName} = this.props;
-    if (styleName == 'baseButton'
-      || !(styleName in style)) {
+    const {onPress, background} = this.props;
+    if (!(background in backgroundStyle)) {
       return <Text>bad</Text>;
     }
-    const buttonStyle = [style.baseButton, style[styleName]];
+    const buttonStyle
+      = [buttonBaseStyle.button, backgroundStyle[background]];
     return (
       <TouchableOpacity
         onPress={onPress}
         style={buttonStyle}>
-        <Text>{this.props.label}</Text>
+        <Text>
+          {this.props.label}
+        </Text>
       </TouchableOpacity>
     );
   }
 }
 
-const style = StyleSheet.create({
-  baseButton: {
+const backgroundStyle = StyleSheet.create({
+  blue: {
+    backgroundColor: 'blue',
+  },
+  green: {
+    backgroundColor: 'green',
+  },
+  red: {
+    backgroundColor: 'red',
+  },
+});
+
+const buttonBaseStyle = StyleSheet.create({
+  button: {
     height: 50,
     flex: 1,
     marginLeft: 5,
@@ -57,14 +71,7 @@ const style = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'transparent',
-  },
-  blueBack: {
-    backgroundColor: 'blue',
-  },
-  greenBack: {
-    backgroundColor: 'green',
-  },
-  redBack: {
-    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
