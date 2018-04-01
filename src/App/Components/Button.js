@@ -54,6 +54,9 @@ const style = StyleSheet.create({
     flex: 1,
     marginLeft: 5,
     marginRight: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
   },
   blueBack: {
     backgroundColor: 'blue',
