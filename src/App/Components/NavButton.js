@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Text, TouchableOpacity} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 
 /**
  * A custom stylable button component with arbitrary content.
  */
-export default class Button extends Component {
+export default class NavButton extends Component {
   static propTypes = {
     /**
      * Views to be pressable as a button.
@@ -32,14 +33,20 @@ export default class Button extends Component {
    * @return {React.Node} A styled button component.
    */
   render() {
-    const {style, onPress} = this.props;
-    if (!style) {
-      return <Text>bad</Text>;
-    }
+    const {onPress} = this.props;
+    const buttonStyle = [style.navButton, this.props.style];
     return (
-      <TouchableOpacity onPress={onPress} style={style}>
+      <TouchableOpacity onPress={onPress} style={buttonStyle}>
         {this.props.children}
       </TouchableOpacity>
     );
   }
 }
+
+const style = StyleSheet.create({
+  navButton: {
+    backgroundColor: 'yellow',
+    height: 50,
+    flex: 1,
+  },
+});
