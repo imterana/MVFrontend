@@ -24,6 +24,7 @@ export default class StandartButton extends Component {
   }
 
   static defaultProps = {
+    label: '',
     styleName: null,
   }
 
@@ -41,7 +42,7 @@ export default class StandartButton extends Component {
       <TouchableOpacity
         onPress={onPress}
         style={buttonStyle}>
-        {this.props.label}
+        <Text>{this.props.label}</Text>
       </TouchableOpacity>
     );
   }
@@ -51,6 +52,8 @@ const style = StyleSheet.create({
   baseButton: {
     height: 50,
     flex: 1,
+    marginLeft: 5,
+    marginRight: 5,
   },
   blueBack: {
     backgroundColor: 'blue',
