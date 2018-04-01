@@ -21,6 +21,7 @@ export default class HomeScreen extends Component {
           <IconSymbol name='html-five' />
           <Link to='/details'><Text>details</Text></Link>
           <Link to='/about'><Text>about</Text></Link>
+          <Link to='/button'><Text>button</Text></Link>
         </View>
       </NavigationScreen>
     );
