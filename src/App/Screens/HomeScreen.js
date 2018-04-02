@@ -31,6 +31,11 @@ export default class HomeScreen extends Component {
               about
             </DefaultText>
           </Link>
+          <Link to='/button'>
+            <DefaultText>
+              button
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );

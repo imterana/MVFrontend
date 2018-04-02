@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import {StyleSheet, View} from 'react-native';
 import {withRouter} from 'react-router-dom';
 
-import {Button} from '../Components';
+import NavButton from './NavButton';
 
-import StyleConstants from '../StyleConstants';
 import {NavigationBar} from './NavigationBar';
 import SideBar from './SideBar';
 
@@ -79,8 +78,7 @@ class NavigationScreen extends Component {
     return (
       <NavigationBar
         leftControl={
-          <Button style={style.button}
-            onPress={leftFunction} />
+          <NavButton onPress={leftFunction}/>
         }
         title={this.props.title}
         rightControl={rightControl}
@@ -125,11 +123,6 @@ const style = StyleSheet.create({
     height: '100%',
     margin: 0,
     padding: 0,
-  },
-  button: {
-    backgroundColor: StyleConstants.CONTROL_COLOR,
-    height: 50,
-    flex: 1,
   },
 });
 
