@@ -42,7 +42,7 @@ export default class Button extends Component {
       <TouchableOpacity
         onPress={onPress}
         style={buttonStyle}>
-        <Text>
+        <Text style={labelStyle.label}>
           {this.props.label}
         </Text>
       </TouchableOpacity>
@@ -64,14 +64,22 @@ const backgroundStyle = StyleSheet.create({
 
 const buttonBaseStyle = StyleSheet.create({
   button: {
-    height: 50,
-    flex: 1,
-    marginLeft: 5,
-    marginRight: 5,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: 'transparent',
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    height: 50,
+    marginLeft: 5,
+    marginRight: 5,
+  },
+});
+
+const labelStyle = StyleSheet.create({
+  label: {
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 20,
   },
 });
