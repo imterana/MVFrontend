@@ -8,6 +8,7 @@ const StyleConstants = {
   DEFAULT_FONT_FAMILY: 'Verdana',
   DEFAULT_FONT_SIZE: 12,
   TITLE_FONT_COLOR: 'white',
+  TITLE_FONT_SIZE: 17,
 };
 
 export default StyleConstants;

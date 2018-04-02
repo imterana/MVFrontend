@@ -6,7 +6,7 @@ import StyleConstants from '../../StyleConstants';
 const fontStyle = StyleSheet.create({
   textField: {
     fontFamily: StyleConstants.DEFAULT_FONT_FAMILY,
-    fontSize: StyleConstants.DEFAULT_FONT_SIZE,
+    fontSize: StyleConstants.TITLE_FONT_SIZE,
     color: StyleConstants.TITLE_FONT_COLOR,
     fontWeight: 'bold',
   },
