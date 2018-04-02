@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+
+import StyleConstants from '../StyleConstants';
+import {TitleText} from '../Components/Text';
 
 /**
  * Navigation bar component. Contains a title, and two controls on each side.
@@ -38,7 +41,7 @@ export class NavigationBar extends Component {
           {this.props.leftControl}
         </View>
         <View style={style.titleContainer}>
-          <Text>{this.props.title}</Text>
+          <TitleText>{this.props.title}</TitleText>
         </View>
         <View style={style.rightControlContainer}>
           {this.props.rightControl}
@@ -50,7 +53,7 @@ export class NavigationBar extends Component {
 
 const style = StyleSheet.create({
   mainContainer: {
-    backgroundColor: 'red',
+    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR,
     flexDirection: 'row',
     height: 50,
     marginTop: 0,

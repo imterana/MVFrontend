@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
+import {DefaultText} from '../Components/Text';
 
 /**
  * A lorem ipsum screen.
@@ -14,7 +14,7 @@ export default class AboutScreen extends Component {
   render() {
     return (
       <NavigationScreen>
-        <Text>
+        <DefaultText>
       Sed ut perspiciatis, unde omnis iste natus error sit voluptatem
       accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab
       illo inventore veritatis et quasi architecto beatae vitae dicta sunt,
@@ -40,7 +40,7 @@ export default class AboutScreen extends Component {
       et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
       delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
       perferendis doloribus asperiores repell
-        </Text>
+        </DefaultText>
       </NavigationScreen>
     );
   }

@@ -5,6 +5,7 @@ import {withRouter} from 'react-router-dom';
 
 import {NavButton} from '../Components';
 
+import StyleConstants from '../StyleConstants';
 import {NavigationBar} from './NavigationBar';
 import SideBar from './SideBar';
 

@@ -17,7 +17,9 @@ export default class App extends Component {
     return (
       <Router>
         <View style={styles.container}>
-          <Redirect from='/' to='/home' />
+          <Route exact path="/" render={() => (
+            <Redirect to="/home"/>
+          )}/>
           <Route path='/home' component={HomeScreen} />
           <Route path='/details' component={DetailsScreen} />
           <Route path='/about' component={AboutScreen} />
@@ -35,6 +37,5 @@ const styles = StyleSheet.create({
     height: '100%',
     margin: 0,
     padding: 0,
-    backgroundColor: 'aqua',
   },
 });
