@@ -17,8 +17,10 @@ export default class Button extends Component {
      */
     onPress: PropTypes.func,
     /**
-     * A style can only be one of three default.
-     * It is passed via string, containig its name.
+     * A style can only be one of three default differ only
+     * in background color.
+     * It is passed via string, containig background color
+     * name (only one of three default: 'blue', 'red' and 'green').
      */
     background: PropTypes.string,
   }
