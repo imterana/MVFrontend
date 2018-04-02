@@ -12,8 +12,11 @@ export default class AvatarView extends Component {
   }
 
   render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
+    };
     return (
-      null
+      <Image source={pic} style={style.banana}/>
     );
   }
 }
