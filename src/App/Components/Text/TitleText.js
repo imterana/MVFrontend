@@ -15,7 +15,7 @@ const fontStyle = StyleSheet.create({
 /**
  * A text component with default font settings.
  */
-export default class DefaultText extends Component {
+export default class TitleText extends Component {
   static propTypes = {
     /*
      * Style, font style settings will be overriden.

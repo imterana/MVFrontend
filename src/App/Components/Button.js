@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
+import {TitleText} from './Text/TitleText';
+
 /**
  * A custom button used for most buttons in project.
  * Contains text. Can have only one of three default styles.
@@ -44,9 +46,9 @@ export default class Button extends Component {
       <TouchableOpacity
         onPress={onPress}
         style={buttonStyle}>
-        <Text style={labelStyle.label}>
+        <TitleText>
           {this.props.label}
-        </Text>
+        </TitleText>
       </TouchableOpacity>
     );
   }
@@ -75,13 +77,5 @@ const buttonBaseStyle = StyleSheet.create({
     height: 50,
     marginLeft: 5,
     marginRight: 5,
-  },
-});
-
-const labelStyle = StyleSheet.create({
-  label: {
-    fontWeight: 'bold',
-    color: 'white',
-    fontSize: 20,
   },
 });
