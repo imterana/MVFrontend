@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import TitleText from './Text/TitleText';
+import {default as StyleConstants} from '../StyleConstants';
 
 /**
  * A custom button used for most buttons in project.
@@ -56,13 +57,13 @@ export default class Button extends Component {
 
 const backgroundStyle = StyleSheet.create({
   blue: {
-    backgroundColor: 'blue',
+    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR,
   },
   green: {
-    backgroundColor: 'green',
+    backgroundColor: StyleConstants.GREEN_BUTTON_COLOR,
   },
   red: {
-    backgroundColor: 'red',
+    backgroundColor: StyleConstants.RED_BUTTON_COLOR,
   },
 });
 
@@ -70,7 +71,7 @@ const buttonBaseStyle = StyleSheet.create({
   button: {
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: StyleConstants.BORDER_COLOR,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
