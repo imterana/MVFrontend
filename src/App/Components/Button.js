@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import TitleText from './Text/TitleText';
-import {default as StyleConstants} from '../StyleConstants';
+import StyleConstants from '../StyleConstants';
 
 /**
  * A custom button used for most buttons in project.
