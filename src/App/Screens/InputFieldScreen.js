@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TextInput} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
 import {InputField} from '../Components';
@@ -17,6 +17,7 @@ export default class InputFieldScreen extends Component {
       <NavigationScreen>
         <View style={style.InputFieldContainer}>
           <InputField />
+          <InputField lens={true} />
         </View>
       </NavigationScreen>
     );
