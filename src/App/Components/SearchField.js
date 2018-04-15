@@ -3,17 +3,17 @@ import React, {Component} from 'react';
 import CustomTextInput from './CustomTextInput';
 
 /**
- * Custom input field used for text entry.
+ * Custom search field used for search.
  * All props are passed to TextInput, placeholder and onChange
  * have default values.
  */
-export default class InputField extends Component {
+export default class SearchField extends Component {
   /**
    * @return {React.Node} styled input field
    */
   render() {
     return (
-      <CustomTextInput search={false} {...this.props} />
+      <CustomTextInput search={true} {...this.props} />
     );
   }
 }

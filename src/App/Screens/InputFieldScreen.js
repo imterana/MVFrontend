@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
-import {InputField} from '../Components';
+import {InputField, SearchField} from '../Components';
 
 /**
  * InputField example screen.
@@ -17,7 +17,7 @@ export default class InputFieldScreen extends Component {
       <NavigationScreen>
         <View style={style.InputFieldContainer}>
           <InputField />
-          <InputField lens={true} />
+          <SearchField />
         </View>
       </NavigationScreen>
     );
