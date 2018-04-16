@@ -32,15 +32,6 @@ export default class CustomTextInput extends Component {
   }
 
   /**
-   * @param {event} event - the change event
-   * Using handling Text Input, storing inputted text in
-   * this.state.value.
-   */
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  /**
    * @param {Props} props - the props
    * Constructor, adds state attribute with
    * inputed text.
@@ -48,8 +39,12 @@ export default class CustomTextInput extends Component {
   constructor(props) {
     super(props);
     this.state = {value: ''};
-    this.onChange = props.onChange
-      ? props.onChange.bind(this) : this.handleChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    /**
+     * Either use user-defined onChange function
+     * and bind this to it or use nop.
+     */
+    this.onChange = props.onChange ? props.onChange.bind(this) : () => {};
   }
 
   /**
@@ -59,6 +54,11 @@ export default class CustomTextInput extends Component {
    */
   handleChange(event) {
     this.setState({value: event.target.value});
+    /**
+     * Calling user defined (and passed with props)
+     * onChange function (binded in constructor).
+     */
+    this.onChange(event);
   }
 
   /**
@@ -66,7 +66,6 @@ export default class CustomTextInput extends Component {
    */
   render() {
     const {search,
-           placeholder,
            /**
             * onChange extracted from this.props but never used.
             * It is done to prevent double-passing onChange prop
@@ -78,8 +77,7 @@ export default class CustomTextInput extends Component {
       <View style={style.inputViewContainer}>
         {search && <IconSymbol name='search' style={style.icon} />}
         <TextInput style={style.TextInput}
-          placeholder={placeholder}
-          onChange={this.onChange}
+          onChange={this.handleChange}
           value={this.state.value}
           {...other} />
       </View>
