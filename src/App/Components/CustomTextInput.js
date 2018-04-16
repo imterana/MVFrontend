@@ -22,13 +22,13 @@ export default class CustomTextInput extends Component {
     /**
      * Custom onChange function.
      */
-    onChange: PropTypes.func,
+    handleChange: PropTypes.func,
   }
 
   static defaultProps = {
     search: false,
     placeholder: 'Урматы, семинар',
-    onChange: null,
+    handleChange: null,
   }
 
   /**
@@ -40,11 +40,6 @@ export default class CustomTextInput extends Component {
     super(props);
     this.state = {value: ''};
     this.handleChange = this.handleChange.bind(this);
-    /**
-     * Either use user-defined onChange function
-     * and bind this to it or use nop.
-     */
-    this.onChange = props.onChange ? props.onChange.bind(this) : () => {};
   }
 
   /**
@@ -55,10 +50,11 @@ export default class CustomTextInput extends Component {
   handleChange(event) {
     this.setState({value: event.target.value});
     /**
-     * Calling user defined (and passed with props)
-     * onChange function (binded in constructor).
+     * If has, use user-defined handle function.
      */
-    this.onChange(event);
+    if (this.props.handleChange) {
+      this.props.handleChange(event);
+    }
   }
 
   /**
@@ -71,7 +67,7 @@ export default class CustomTextInput extends Component {
             * It is done to prevent double-passing onChange prop
             * to TextInput, when passing {...other}.
             */
-           onChange, // eslint-disable-line no-unused-vars
+           handleChange, // eslint-disable-line no-unused-vars
            ...other} = this.props;
     return (
       <View style={style.inputViewContainer}>
