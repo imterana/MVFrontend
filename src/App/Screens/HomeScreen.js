@@ -36,6 +36,11 @@ export default class HomeScreen extends Component {
               button
             </DefaultText>
           </Link>
+          <Link to='/inputfield'>
+            <DefaultText>
+              inputfield
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
