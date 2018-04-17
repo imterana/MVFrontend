@@ -45,9 +45,9 @@ export default class ButtonScreen extends Component {
         </View>
         <ButtonRow
           greenLabel='green button'
-          greenOnPress={onPressFunction}
+          onGreenPress={onPressFunction}
           redLabel='red button'
-          redOnPress={onPressFunction} />
+          onRedPress={onPressFunction} />
       </NavigationScreen>
     );
   }

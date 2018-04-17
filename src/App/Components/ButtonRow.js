@@ -18,15 +18,15 @@ export default class ButtonRow extends Component {
     /**
      * Press handler functions for green and red buttons.
      */
-    greenOnPress: PropTypes.func,
-    redOnPress: PropTypes.func,
+    onGreenPress: PropTypes.func,
+    onRedPress: PropTypes.func,
   }
 
   static defaultProps = {
     greenLabel: '',
     redLabel: '',
-    greenOnPress: () => {},
-    redOnPress: () => {},
+    onGreenPress: () => {},
+    onRedPress: () => {},
   }
 
   /**
@@ -35,20 +35,20 @@ export default class ButtonRow extends Component {
   render() {
     const {greenLabel,
            redLabel,
-           greenOnPress,
-           redOnPress,
+           onGreenPress,
+           onRedPress,
            ...other} = this.props;
     return (
       <View style={style.buttonContainer}>
         <View style={style.buttonRow}>
           <BaseButton
             label={greenLabel}
-            onPress={greenOnPress}
+            onPress={onGreenPress}
             background='green'
             {...other} />
           <BaseButton
             label={redLabel}
-            onPress={redOnPress}
+            onPress={onRedPress}
             background='red'
             {...other} />
         </View>
