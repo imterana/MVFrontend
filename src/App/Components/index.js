@@ -6,3 +6,5 @@ export {default as SearchField} from './SearchField';
 export {default as Select} from './Select';
 export {default as DateSelect} from './DateSelect';
 export {default as TimeSelect} from './TimeSelect';
+export {default as KarmaCircle} from './KarmaCircle';
+
