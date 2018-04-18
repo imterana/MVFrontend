@@ -41,6 +41,11 @@ export default class HomeScreen extends Component {
               inputfield
             </DefaultText>
           </Link>
+          <Link to='/karmacircle'>
+            <DefaultText>
+              karmacircle
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );

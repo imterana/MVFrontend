@@ -7,7 +7,8 @@ import {AboutScreen,
         DetailsScreen,
         HomeScreen,
         ButtonScreen,
-        InputFieldScreen} from './Screens';
+        InputFieldScreen,
+        KarmaCircleScreen} from './Screens';
 
 /**
  * The primary app component. Contains all the routes to screens.
@@ -29,6 +30,7 @@ export default class App extends Component {
           <Route path='/about' component={AboutScreen} />
           <Route path='/button' component={ButtonScreen} />
           <Route path='/inputfield' component={InputFieldScreen} />
+          <Route path='/karmacircle' component={KarmaCircleScreen} />
         </View>
       </Router>
     );
