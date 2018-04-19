@@ -10,14 +10,18 @@ import StyleConstants from '../StyleConstants';
 export default class InputField extends Component {
   static propTypes = {
     /**
-     * Target value, which is being changed, when
-     * checkbox is being pressed.
+     * Defines initial state of checkbox.
      */
-    value: PropTypes.bool,
+    checked: PropTypes.bool,
+    /**
+     * Custom onPress function.
+     */
+    onPress: PropTypes.func,
   }
 
   static defaultProps = {
-    value: null,
+    value: false,
+    onPress: () => {},
   }
 
   /**
@@ -26,8 +30,8 @@ export default class InputField extends Component {
   render() {
     /**
      * IconSymbol should be putted to TouchableOpacity.
-     * It should change its icon to checkbox-checked/unchecked
-     * on press as well as value (which is boolean) to !value.
+     * It should change its state (i.e. checked/unchecked) and
+     * call this.props.onPress function.
      * You can use ./BaseButton.js as an example of using
      * TouchableOpacity.
      */
