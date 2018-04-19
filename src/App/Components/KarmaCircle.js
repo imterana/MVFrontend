@@ -11,14 +11,9 @@ import DefaultText from './Text/DefaultText';
 export default class InputField extends Component {
   static propTypes = {
     /**
-     * Value is a number, which specifies amount of
-     * karma, that user achieved.
+     * User ID, used to obtain user's amount of karma.
      */
-    value: PropTypes.number,
-  }
-
-  static defaultProps = {
-    value: 0,
+    userId: PropTypes.string,
   }
 
   /**
@@ -51,7 +46,11 @@ export default class InputField extends Component {
    * color and value in it
    */
   render() {
-    const background = this.chooseBackground(this.props.value);
+    /**
+     * Amount of karma should be obtained using this.props.userId
+     * by appropriate API call.
+     */
+    const background = this.chooseBackground(100);
     return (
       <DefaultText
         style={{backgroundColor: background}}>
