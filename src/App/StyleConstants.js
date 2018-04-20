@@ -1,0 +1,14 @@
+const StyleConstants = {
+  RED_BUTTON_COLOR: '#CA5C54',
+  GREEN_BUTTON_COLOR: '#74B566',
+  BORDER_COLOR: '#E5ECED',
+  ALT_BACKGROUND_COLOR: '#1B6D8D',
+  BACKGROUND_COLOR: 'white',
+  CONTROL_COLOR: '#F4B52A',
+  DEFAULT_FONT_FAMILY: 'Verdana',
+  DEFAULT_FONT_SIZE: 12,
+  TITLE_FONT_COLOR: 'white',
+  TITLE_FONT_SIZE: 17,
+};
+
+export default StyleConstants;

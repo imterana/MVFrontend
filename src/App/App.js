@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Redirect, Route} from 'react-router';
 import Router from './Router';
 
-import {AboutScreen, DetailsScreen, HomeScreen} from './Screens';
+import {AboutScreen, DetailsScreen, HomeScreen, ButtonScreen} from './Screens';
 
 /**
  * The primary app component. Contains all the routes to screens.
@@ -17,10 +17,13 @@ export default class App extends Component {
     return (
       <Router>
         <View style={styles.container}>
-          <Redirect from='/' to='/home' />
+          <Route exact path="/" render={() => (
+            <Redirect to="/home"/>
+          )}/>
           <Route path='/home' component={HomeScreen} />
           <Route path='/details' component={DetailsScreen} />
           <Route path='/about' component={AboutScreen} />
+          <Route path='/button' component={ButtonScreen} />
         </View>
       </Router>
     );
@@ -34,6 +37,5 @@ const styles = StyleSheet.create({
     height: '100%',
     margin: 0,
     padding: 0,
-    backgroundColor: 'aqua',
   },
 });

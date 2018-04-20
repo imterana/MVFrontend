@@ -33,7 +33,7 @@ export default class IconSymbol extends Component {
     const {style, name} = this.props;
     const symbolChar = String.fromCharCode(IconSymbolCodes[name]);
     return (
-      <Text style={{...style, fontFamily: 'IcoMoon'}}>
+      <Text style={{...style, fontFamily: 'IcoMoon-Free'}}>
         {symbolChar}
       </Text>
     );
