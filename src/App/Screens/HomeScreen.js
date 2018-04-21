@@ -20,7 +20,6 @@ export default class HomeScreen extends Component {
       <NavigationScreen hamburger>
         <View style={style.container}>
           <DefaultText>Home Screen</DefaultText>
-          <AvatarView userId= "0324"/>
           <IconSymbol name='html-five' />
           <Link to='/details'>
             <DefaultText>
