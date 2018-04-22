@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
+import {View, StyleSheet} from 'react-native';
 import DefaultText from './Text/DefaultText';
 
 /**
@@ -14,6 +14,7 @@ export default class InputField extends Component {
      * User ID, used to obtain user's amount of karma.
      */
     userId: PropTypes.string,
+    value: PropTypes.int,
   }
 
   /**
@@ -50,12 +51,23 @@ export default class InputField extends Component {
      * Amount of karma should be obtained using this.props.userId
      * by appropriate API call.
      */
-    const background = this.chooseBackground(100);
+    const background = this.chooseBackground(this.props.value);
+    const styles = StyleSheet.create({
+      circleShape: {
+        width: 50,
+        height: 50,
+        borderRadius: '100%',
+        backgroundColor: background,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    });
     return (
-      <DefaultText
-        style={{backgroundColor: background}}>
-        Circle will be here
-      </DefaultText>
+      <View style={styles.circleShape}>
+        <DefaultText style={{color: 'white'}}>
+          {this.props.value}
+        </DefaultText>
+      </View>
     );
   }
 }
