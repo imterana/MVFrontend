@@ -33,12 +33,11 @@ export default class InputField extends Component {
     const blueBorder = 100;
     const redBorder = 500;
     let background = 'white';
-    if (value >= blueBorder) {
-      background = 'blue';
-    }
     if (value >= redBorder) {
       background = 'red';
-    }
+    } else if (value >= blueBorder) {
+      background = 'blue';
+    } 
     return background;
   }
 
