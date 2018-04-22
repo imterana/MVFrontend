@@ -4,7 +4,7 @@ import {Link} from '../RouterWrapper';
 
 import {DefaultText} from '../Components/Text';
 import {NavigationScreen} from '../Navigation';
-import {IconSymbol, AvatarView} from '../Components';
+import {IconSymbol} from '../Components';
 import StyleConstants from '../StyleConstants';
 
 /**
