@@ -15,70 +15,26 @@ export default class AvatarView extends Component {
   static defaultProps = {
     style: null,
   }
+
   /**
    * @return {React.Node} A styled avatar component.
    */
   render() {
-    const isVerified = checkVerified(this.props.userId);
     let photo = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
     return (
-      <UserAvatar photo = {photo} isVerified = {isVerified} />
-    );
-  }
-}
-
-/**
- * @param {props} props.photo - The photo of user
- * @param {props} props - props
- * @return {React.Node} A view of verified user avatar
- */
-function VerifiedUserAvatar(props) {
-  return (
       <View style={styles.avatarSize}>
-        <Image source={props.photo} style={styles.photoShape}/>
-        <IconSymbol
-          style={{position: 'absolute', marginLeft: '86%', marginTop: '86%'}}
-          name='checkmark'
+        <Image source={photo}
+          style={[styles.photoShape, this.props.style]}
         />
+        {this.props.userId.charAt(0) == '0' &&
+          <IconSymbol
+            style={{position: 'absolute', marginLeft: '86%', marginTop: '86%'}}
+            name='checkmark'
+          />
+        }
       </View>
     );
-}
-
-/**
- * @param {uri} props.photo - The photo of user.
- * @param {props} props - props
- * @return {React.Node} A view of verified user avatar
- */
-function NotVerifiedUserAvatar(props) {
-  return (
-      <View style={styles.avatarSize}>
-        <Image source={props.photo} style={styles.photoShape}/>
-      </View>
-    );
-}
-
-/**
- * @return {React.Node} A view of Verified User Avatar
- * @param {string} userId - id of user
- */
-function checkVerified(userId) {
-    if (userId.charAt(0) == '0') {
-      return true;
-    }
-    return false;
   }
-
-/**
- * @param {props} props.photo - The photo of user.
- * @param {props} props.isVerified - Verified or not
- * @param {props} props - props
- * @return {React.Node} A view of verified user avatar
- */
-function UserAvatar(props) {
-  if (props.isVerified) {
-    return <VerifiedUserAvatar photo = {props.photo} />;
-  }
-  return <NotVerifiedUserAvatar photo = {props.photo} />;
 }
 
 const styles = StyleSheet.create({
