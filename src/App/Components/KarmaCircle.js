@@ -37,13 +37,11 @@ export default class InputField extends Component {
       background = 'red';
     } else if (value >= blueBorder) {
       background = 'blue';
-    } 
+    }
     return background;
   }
-
   /**
    * @return {React.Node} circle with specific background
-   * color and value in it
    */
   render() {
     /**
