@@ -7,26 +7,34 @@ import {IconSymbol} from '../Components';
  * A custom stylable avatar component.
  */
 export default class AvatarView extends Component {
-  static propTypes = {
-    style: PropTypes.any,
-    userId: PropTypes.string,
-    photo: PropTypes.uri,
-  }
-  static defaultProps = {
-    style: null,
+  /**
+   * @param {props} props
+   */
+  constructor(props) {
+    super(props);
+    let id = this.props.userId;
+    this.photo = getPhoto(id);
+    this.isVerified = isVerified(id);
   }
 
+  static propTypes = {
+    style: PropTypes.any,
+    userId: PropTypes.string.isRequired,
+  }
+  static defaultProps = {
+    style: {},
+    userId: null,
+  }
   /**
    * @return {React.Node} A styled avatar component.
    */
   render() {
-    let photo = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
     return (
       <View style={styles.avatarSize}>
-        <Image source={photo}
+        <Image source={this.photo}
           style={[styles.photoShape, this.props.style]}
         />
-        {this.props.userId.charAt(0) == '0' &&
+        {isVerified(this.props.userId) &&
           <IconSymbol
             style={{position: 'absolute', marginLeft: '86%', marginTop: '86%'}}
             name='checkmark'
@@ -35,6 +43,22 @@ export default class AvatarView extends Component {
       </View>
     );
   }
+}
+
+/**
+ * @return {uri} uri
+ * @param {string} id - id.
+ */
+function getPhoto(id) {
+  return {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
+}
+
+/**
+ * @return {bool} varified or not
+ * @param {string} id - id.
+ */
+function isVerified(id) {
+  return id.charAt(0) == '0';
 }
 
 const styles = StyleSheet.create({
@@ -47,10 +71,5 @@ const styles = StyleSheet.create({
     height: '100%',
     borderRadius: '100%',
     position: 'absolute',
-  },
-  checkmarkPosition: {
-    position: 'absolute',
-    marginLeft: '86%',
-    marginTop: '86%',
   },
 });
