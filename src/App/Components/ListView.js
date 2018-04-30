@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ListView, Text, TouchableOpacity} from 'react-native';
+import {ListView, Text, TouchableOpacity, View} from 'react-native';
+import StyleConstants from '../StyleConstants';
 
 /**
  * A pressable list row element with custom title.
@@ -19,7 +20,18 @@ class ListRow extends Component {
     const {title, onPress} = this.props;
     return (
       <TouchableOpacity onPress={onPress}>
-      <Text>{title}</Text>
+        <View style={{flexDirection: 'row', height: 65, marginLeft: 10, marginRight: 10, marginTop: 20, borderRadius: 5, borderColor: 'grey',
+    borderWidth: 1}}>
+          <View style={{backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR, flex: 0.01, borderRadius: 10}}/>
+          <View style={{flexDirection: 'column', marginLeft: 10}}> 
+            <View style={{flex: 1, alignItems: 'center', flexDirection: 'column'}}>
+              <Text>{title}</Text>
+            </View>
+            <View style={{flex: 1, alignItems: 'center', flexDirection: 'column'}}>
+              <Text style={{color: 'grey'}}>{title}</Text>
+            </View>  
+          </View>
+        </View>
       </TouchableOpacity>
     );
   }
@@ -57,8 +69,7 @@ export default class DefaultListView extends Component {
     return (
       <ListView
         renderHeader={(sectionData)=>
-          {sectionData && <SectionHeader title={sectionData.title} />}
-         }
+          {sectionData && <SectionHeader title={sectionData.title} />}}
          renderRow={(data)=>
            <ListRow {...data}/>
          }
