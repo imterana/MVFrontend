@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ListView, Text, TouchableOpacity, View} from 'react-native';
 import StyleConstants from '../StyleConstants';
+import {IconSymbol} from '../Components';
 
 /**
  * A pressable list row element with custom title.
@@ -10,6 +11,7 @@ import StyleConstants from '../StyleConstants';
 class ListRow extends Component {
   static propTypes = {
     title: PropTypes.string,
+    subtitle: PropTypes.string,
     onPress: PropTypes.func,
   }
 
@@ -17,19 +19,22 @@ class ListRow extends Component {
    * @return {React.Node} A list element with specified title and onpress.
    */
   render() {
-    const {title, onPress} = this.props;
+    const {title, subtitle, onPress} = this.props;
     return (
       <TouchableOpacity onPress={onPress}>
-        <View style={{flexDirection: 'row', height: 65, marginLeft: 10, marginRight: 10, marginTop: 20, borderRadius: 5, borderColor: 'grey',
-    borderWidth: 1}}>
-          <View style={{backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR, flex: 0.01, borderRadius: 10}}/>
-          <View style={{flexDirection: 'column', marginLeft: 10}}> 
-            <View style={{flex: 1, alignItems: 'center', flexDirection: 'column'}}>
+        <View style={{flexDirection: 'row', height: 65, marginLeft: 10, marginRight: 10, marginTop: 10, borderRadius: 5, borderColor: StyleConstants.BORDER_COLOR,
+    borderWidth: 1, backgroundColor: 'white'}}>
+          <View style={{backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR, width: 5, borderRadius: 5}}/>
+          <View style={{flexDirection: 'column', marginLeft: 10, marginTop: 8, flex: 0.99}}> 
+            <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
               <Text>{title}</Text>
             </View>
-            <View style={{flex: 1, alignItems: 'center', flexDirection: 'column'}}>
-              <Text style={{color: 'grey'}}>{title}</Text>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+              <Text style={{color: 'grey'}}>{subtitle}</Text>
             </View>  
+          </View>
+          <View style={{flex: 0, flexDirection: 'column', justifyContent: 'center', marginRight: 20}}>
+            <IconSymbol name='circle-right' style={{color: StyleConstants.ALT_BACKGROUND_COLOR}}/>
           </View>
         </View>
       </TouchableOpacity>
@@ -52,7 +57,9 @@ class SectionHeader extends Component {
   render() {
     const {title} = this.props;
     return (
-      <Text>{title}</Text>
+      <View style={{flex: 1, flexDirection: 'column', height: 50}}>
+        <Text style={{color: 'grey'}}>{title}</Text>
+      </View> 
     );
   }
 }

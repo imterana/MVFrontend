@@ -15,7 +15,12 @@ export default class ListScreen extends Component {
       dataSource: ds.cloneWithRows(
         [
           {
-            title: 'huh',
+            title: 'title 1',
+            subtitle: 'subtitle',
+            onPress: null,
+          },
+          {
+            title: 'title 2',
             onPress: null,
           },
         ]
@@ -30,6 +35,7 @@ export default class ListScreen extends Component {
       <NavigationScreen>
         <View>
           <DefaultListView
+            sectionData = {{title: 'sdf'}}
             dataSource={this.state.dataSource}
           />
         </View>
