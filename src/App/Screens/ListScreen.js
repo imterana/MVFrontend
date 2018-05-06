@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {ListView, View, StyleSheet} from 'react-native';
-import {DefaultListView, SectionHeader} from '../Components';
+import {ListView, View, StyleSheet, Text} from 'react-native';
+import {DefaultListView, AdminListView} from '../Components';
 import {NavigationScreen} from '../Navigation';
 
 /**
@@ -34,8 +34,18 @@ export default class ListScreen extends Component {
     return (
       <NavigationScreen>
         <View>
+          <View style={styles.separator}>
+            <Text style={{color: 'grey'}}>DefaultListView</Text>
+          </View> 
           <DefaultListView
-            sectionData = {{title: 'sdf'}}
+            dataSource={this.state.dataSource}
+          />
+        </View>
+        <View>
+          <View style={styles.separator}>
+            <Text style={{color: 'grey'}}>AdminListView</Text>
+          </View>
+          <AdminListView
             dataSource={this.state.dataSource}
           />
         </View>
@@ -43,3 +53,12 @@ export default class ListScreen extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  separator: {  
+    height: 40,
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    paddingLeft: 20,
+  },  
+});

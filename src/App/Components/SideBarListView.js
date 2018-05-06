@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     height: 65, 
     marginLeft: 10, 
     marginRight: 10, 
-    marginBottom: 10,
     marginTop: 10, 
     borderRadius: 5, 
     borderColor: StyleConstants.BORDER_COLOR,
