@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 
-import {NavigationScreen} from '../Navigation';
 import {BackendLink, IconSymbol} from '../Components';
 import {DefaultText} from '../Components/Text';
 import StyleConstants from '../StyleConstants';
@@ -21,7 +20,7 @@ export default class LoginScreen extends Component {
       <View style={style.container}>
         <View style={style.logoContainer}>
           <Image
-            source={require('./img/logo.png')}
+            source={logo}
             style={style.logoImage}
             resizeMode='contain'
           />

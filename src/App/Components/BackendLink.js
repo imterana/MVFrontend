@@ -26,7 +26,6 @@ export default class BackendLink extends Component {
    * @param {string} url - the url to visit.
    */
   static goToLink(url) {
-    console.log(url)
     window.location = url;
   }
 
