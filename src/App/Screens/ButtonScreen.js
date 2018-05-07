@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
-import {Button} from '../Components';
+import {Button, ButtonRow} from '../Components';
 
 /**
  * Button example screen.
@@ -34,27 +34,20 @@ export default class ButtonScreen extends Component {
     onPressFunction = this.onButtonPress.bind(this);
     return (
       <NavigationScreen>
-        <View style={style.buttonContainer}>
-          <Button
-            label='button'
-            onPress={onPressFunction}
-            background='blue' />
-        </View>
+        <Button
+          label='button'
+          onPress={onPressFunction}
+          background='blue' />
         <View style={style.countContainer}>
           <Text>
-            {this.state.count !== 0 ? this.state.count: null}
+            {this.state.count !== 0 ? this.state.count : null}
           </Text>
         </View>
-        <View style={style.rowButtons}>
-          <Button
-            label='button1'
-            onPress={onPressFunction}
-            background='green' />
-          <Button
-            label='button2'
-            onPress={onPressFunction}
-            background='red' />
-        </View>
+        <ButtonRow
+          greenLabel='green button'
+          onGreenPress={onPressFunction}
+          redLabel='red button'
+          onRedPress={onPressFunction} />
       </NavigationScreen>
     );
   }
@@ -67,13 +60,7 @@ const style = StyleSheet.create({
     height: 50,
   },
   countContainer: {
-    top: 10,
     alignItems: 'center',
     padding: 10,
-  },
-  rowButtons: {
-    top: 10,
-    flex: 1,
-    flexDirection: 'row',
   },
 });
