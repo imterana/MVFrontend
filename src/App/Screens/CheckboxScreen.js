@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
 import {Checkbox} from '../Components';
@@ -13,7 +14,9 @@ export default class CheckboxScreen extends Component {
   render() {
     return (
       <NavigationScreen>
-        <Checkbox />
+        <View style={{alignItems: 'center', top: 10}}>
+          <Checkbox />
+        </View>
       </NavigationScreen>
     );
   }
