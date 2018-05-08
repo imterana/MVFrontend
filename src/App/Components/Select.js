@@ -69,6 +69,9 @@ export default class Select extends Component {
     this.removeSelected();
   }
 
+  /**
+   * Removes this.state.selected from this.data.
+   */
   removeSelected() {
     const index = this.data.indexOf(this.state.selected);
     if (index !== -1) {
