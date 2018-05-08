@@ -98,7 +98,8 @@ const style = StyleSheet.create({
   },
   icon: {
     fontSize: 16,
-    flex: 1,
+    flex: 0,
+    width: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },
