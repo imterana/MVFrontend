@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
 import Select from '../Components/Select';
@@ -15,16 +15,24 @@ export default class SelectScreen extends Component {
   render() {
     return (
       <NavigationScreen>
-        <View style={{flex: 1, top: 10, alignItems: 'center'}}>
+        <View style={styles.container}>
           <DateSelect />
         </View>
-        <View style={{flex: 1, top: 10, alignItems: 'center'}}>
+        <View style={styles.container}>
           <TimeSelect />
         </View>
-        <View style={{flex: 1, top: 10, alignItems: 'center'}}>
+        <View style={styles.container}>
           <Select data={['something', 'another', 'yet another']} />
         </View>
       </NavigationScreen>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 0,
+    padding: 10,
+    alignItems: 'center',
+  },
+});
