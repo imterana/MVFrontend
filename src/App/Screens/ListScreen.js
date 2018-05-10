@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
-import {ListView, View, StyleSheet, Text} from 'react-native';
-import {DefaultListView, AdminListView} from '../Components';
+import {ListView, View, StyleSheet} from 'react-native';
+
+import {BigListView, SmallListView} from '../Components';
 import {NavigationScreen} from '../Navigation';
+import {AltText} from '../Components/Text';
 
 /**
  * A screen demonstrating ListView.
  */
 export default class ListScreen extends Component {
+  /**
+   * @param {Props} props - the props.
+   */
   constructor(props) {
     super(props);
 
@@ -60,24 +65,24 @@ export default class ListScreen extends Component {
       <NavigationScreen>
         <View>
           <View style={styles.separator}>
-            <Text style={{color: 'grey'}}>DefaultListView</Text>
+            <AltText>BigListView</AltText>
           </View>
-          <DefaultListView
+          <BigListView
             dataSource={this.state.dataSource}
           />
           <View style={styles.separator}>
-            <Text style={{color: 'grey'}}>DefaultListView (headers)</Text>
+            <AltText>BigListView (headers)</AltText>
           </View>
-          <DefaultListView
+          <BigListView
             dataSource={this.state.dataSourceWithHeaders}
             withHeaders={true}
           />
         </View>
         <View>
           <View style={styles.separator}>
-            <Text style={{color: 'grey'}}>AdminListView</Text>
+            <AltText>SmallListView</AltText>
           </View>
-          <AdminListView
+          <SmallListView
             dataSource={this.state.dataSource}
             title="Sample title"
           />

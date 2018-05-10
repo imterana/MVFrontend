@@ -5,6 +5,7 @@ const StyleConstants = {
   ALT_BACKGROUND_COLOR: '#1B6D8D',
   BACKGROUND_COLOR: 'white',
   CONTROL_COLOR: '#F4B52A',
+  ALT_TEXT_COLOR: 'gray',
   DEFAULT_FONT_FAMILY: 'Verdana',
   DEFAULT_FONT_SIZE: 12,
   TITLE_FONT_COLOR: 'white',

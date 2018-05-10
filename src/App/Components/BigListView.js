@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {ListView, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import StyleConstants from '../StyleConstants';
 import {IconSymbol} from '../Components';
-import {DefaultText} from '../Components/Text';
+import {AltText} from '../Components/Text';
 
 /**
  * A pressable list row element with custom title.
@@ -30,7 +30,7 @@ class ListRow extends Component {
               <Text>{title}</Text>
             </View>
             <View style={styles.subtitle}>
-              <DefaultText style={{color: 'grey'}}>{subtitle}</DefaultText>
+              <AltText>{subtitle}</AltText>
             </View>
           </View>
           <View style={styles.iconContainer}>
@@ -58,7 +58,7 @@ class SectionHeader extends Component {
     const {title} = this.props;
     return (
       <View style={styles.headerContainer}>
-        <DefaultText style={{color: 'grey'}}>{title}</DefaultText>
+        <AltText>{title}</AltText>
       </View>
     );
   }
@@ -128,16 +128,13 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    flexDirection: 'column',
     justifyContent: 'center',
   },
   subtitle: {
     flex: 1,
-    flexDirection: 'column',
   },
   iconContainer: {
     flex: 0,
-    flexDirection: 'column',
     justifyContent: 'center',
     marginRight: 20,
   },
