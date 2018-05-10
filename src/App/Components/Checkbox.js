@@ -6,7 +6,7 @@ import IconSymbol from './IconSymbol';
 import StyleConstants from '../StyleConstants';
 
 /**
- * Custom checkbox, used in MAV.
+ * Custom checkbox.
  */
 export default class InputField extends Component {
   static propTypes = {
@@ -32,23 +32,23 @@ export default class InputField extends Component {
     super(props);
     this.state = {checked: props.checked};
 
-    this.changeChecked = this.changeChecked.bind(this);
+    this.toggleChecked = this.toggleChecked.bind(this);
     this.onPress = this.onPress.bind(this);
   }
 
   /**
    * Changes state.checked.
    */
-  changeChecked() {
+  toggleChecked() {
     this.setState({pressed: !this.state.pressed});
   }
 
   /**
    * Press handler.
-   * Changes state.checked and calls callback.
+   * Toggles state.checked and calls callback.
    */
   onPress() {
-    this.changeChecked();
+    this.toggleChecked();
     this.props.onPress();
   }
 
