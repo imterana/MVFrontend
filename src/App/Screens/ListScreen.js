@@ -10,10 +10,13 @@ export default class ListScreen extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2)=>r1!=r2});
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2)=>r1!==r2,
+      sectionHeaderHasChanged: (r1, r2)=>r1!==r2,
+    });
     this.state = {
-      dataSource: ds.cloneWithRows(
-        [
+      dataSourceWithHeaders: ds.cloneWithRowsAndSections({
+        'section_1': [
           {
             title: 'title 1',
             subtitle: 'subtitle',
@@ -23,8 +26,30 @@ export default class ListScreen extends Component {
             title: 'title 2',
             onPress: null,
           },
-        ]
-      ),
+        ],
+        'section_2': [
+          {
+            title: 'title 1',
+            subtitle: 'subtitle',
+            onPress: null,
+          },
+          {
+            title: 'title 2',
+            onPress: null,
+          },
+        ],
+      }),
+      dataSource: ds.cloneWithRows([
+        {
+          title: 'title 1',
+          subtitle: 'subtitle',
+          onPress: null,
+        },
+        {
+          title: 'title 2',
+          onPress: null,
+        },
+      ]),
     };
   }
   /**
@@ -36,9 +61,16 @@ export default class ListScreen extends Component {
         <View>
           <View style={styles.separator}>
             <Text style={{color: 'grey'}}>DefaultListView</Text>
-          </View> 
+          </View>
           <DefaultListView
             dataSource={this.state.dataSource}
+          />
+          <View style={styles.separator}>
+            <Text style={{color: 'grey'}}>DefaultListView (headers)</Text>
+          </View>
+          <DefaultListView
+            dataSource={this.state.dataSourceWithHeaders}
+            withHeaders={true}
           />
         </View>
         <View>
@@ -47,6 +79,7 @@ export default class ListScreen extends Component {
           </View>
           <AdminListView
             dataSource={this.state.dataSource}
+            title="Sample title"
           />
         </View>
       </NavigationScreen>
@@ -55,10 +88,10 @@ export default class ListScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  separator: {  
+  separator: {
     height: 40,
-    flexDirection: 'column', 
-    justifyContent: 'center', 
+    flexDirection: 'column',
+    justifyContent: 'center',
     paddingLeft: 20,
-  },  
+  },
 });

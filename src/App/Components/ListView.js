@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {ListView, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import StyleConstants from '../StyleConstants';
 import {IconSymbol} from '../Components';
+import {DefaultText} from '../Components/Text';
 
 /**
  * A pressable list row element with custom title.
@@ -24,13 +25,13 @@ class ListRow extends Component {
       <TouchableOpacity onPress={onPress}>
         <View style={styles.rowContainer}>
           <View style={styles.stick}/>
-          <View style={styles.infoContainer}> 
+          <View style={styles.infoContainer}>
             <View style={styles.title}>
               <Text>{title}</Text>
             </View>
             <View style={styles.subtitle}>
-              <Text style={{color: 'grey'}}>{subtitle}</Text>
-            </View>  
+              <DefaultText style={{color: 'grey'}}>{subtitle}</DefaultText>
+            </View>
           </View>
           <View style={styles.iconContainer}>
             <IconSymbol name='circle-right' style={styles.icon}/>
@@ -57,8 +58,8 @@ class SectionHeader extends Component {
     const {title} = this.props;
     return (
       <View style={styles.headerContainer}>
-        <Text style={{color: 'grey'}}>{title}</Text>
-      </View> 
+        <DefaultText style={{color: 'grey'}}>{title}</DefaultText>
+      </View>
     );
   }
 }
@@ -71,15 +72,30 @@ export default class DefaultListView extends Component {
   /**
    * @return {React.Node} a styled list component
    */
+  static propTypes = {
+    withHeaders: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    withHeaders: false,
+  }
+
+  /**
+   * @return {React.Node} A list with an optional header
+   */
   render() {
+    const {withHeaders, ...other} = this.props;
     return (
       <ListView
-        renderHeader={(sectionData)=>
-          {sectionData && <SectionHeader title={sectionData.title} />}}
-         renderRow={(data)=>
-           <ListRow {...data}/>
-         }
-         {...this.props}
+        renderSectionHeader={
+          (sectionData, category)=>{
+            return (withHeaders && <SectionHeader title={category} />);
+          }
+        }
+        renderRow={(data)=>
+          <ListRow {...data}/>
+        }
+        {...other}
       />
     );
   }
@@ -87,49 +103,53 @@ export default class DefaultListView extends Component {
 
 const styles = StyleSheet.create({
   rowContainer: {
-    flexDirection: 'row', 
-    height: 65, 
-    marginLeft: 10, 
-    marginRight: 10, 
+    flexDirection: 'row',
+    height: 65,
+    marginLeft: 10,
+    marginRight: 10,
     marginBottom: 10,
-    marginTop: 10, 
-    borderRadius: 5, 
+    marginTop: 10,
+    borderRadius: 5,
     borderColor: StyleConstants.BORDER_COLOR,
-    borderWidth: 1, 
+    borderWidth: 1,
     backgroundColor: 'white',
   },
   stick: {
-    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR, 
-    width: 5, 
-    borderRadius: 5,
+    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR,
+    width: 5,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
   infoContainer: {
-    flexDirection: 'column', 
-    marginLeft: 10, 
-    marginTop: 8, 
+    flexDirection: 'column',
+    marginLeft: 10,
+    marginTop: 8,
     flex: 1,
   },
   title: {
-    flex: 1, 
-    flexDirection: 'column', 
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
   },
   subtitle: {
-    flex: 1, 
+    flex: 1,
     flexDirection: 'column',
   },
   iconContainer: {
-    flex: 0, 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
+    flex: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
     marginRight: 20,
   },
   icon: {
     color: StyleConstants.ALT_BACKGROUND_COLOR,
   },
   headerContainer: {
-    flex: 1, 
-    flexDirection: 'column', 
-    height: 50,
+    marginLeft: 10,
+    marginBottom: 5,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    height: 40,
   },
 });

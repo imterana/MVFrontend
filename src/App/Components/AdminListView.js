@@ -9,8 +9,8 @@ import StyleConstants from '../StyleConstants';
  */
 class ListRow extends Component {
   static propTypes = {
-    title: PropTypes.string,
     onPress: PropTypes.func,
+    title: PropTypes.string,
   }
 
   /**
@@ -22,7 +22,7 @@ class ListRow extends Component {
       <TouchableOpacity onPress={onPress}>
         <View style={styles.rowContainer}>
           <View style={styles.stick}/>
-          <View style={styles.infoContainer}> 
+          <View style={styles.infoContainer}>
             <Text>{title}</Text>
           </View>
         </View>
@@ -35,7 +35,7 @@ class ListRow extends Component {
  * A section header component for the list.
  * @class SectionHeader
  */
-class SectionHeader extends Component {
+class ListHeader extends Component {
   static propTypes = {
     title: PropTypes.string,
   }
@@ -46,9 +46,9 @@ class SectionHeader extends Component {
   render() {
     const {title} = this.props;
     return (
-      <View style={styles.headerContainer}>
-        <Text style={{color: 'grey'}}>{title}</Text>
-      </View> 
+      <View style={[styles.rowContainer, styles.infoContainer, styles.title]}>
+          <Text style={{color: 'white'}}>{title}</Text>
+      </View>
     );
   }
 }
@@ -58,18 +58,22 @@ class SectionHeader extends Component {
  * @class DefaultListView
  */
 export default class AdminListView extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+  }
+
   /**
    * @return {React.Node} a styled list component
    */
   render() {
+    const {title, ...other} = this.props;
     return (
       <ListView
-        renderHeader={(sectionData)=>
-          {sectionData && <SectionHeader title={sectionData.title} />}}
+         renderHeader={()=>title && <ListHeader title={title} />}
          renderRow={(data)=>
-           <ListRow {...data}/>
+          <ListRow {...data}/>
          }
-         {...this.props}
+         {...other}
       />
     );
   }
@@ -77,35 +81,38 @@ export default class AdminListView extends Component {
 
 const styles = StyleSheet.create({
   rowContainer: {
-    flexDirection: 'row', 
-    height: 32, 
-    marginLeft: 10, 
-    marginRight: 10, 
-    marginTop: 10, 
-    borderRadius: 5, 
+    flexDirection: 'row',
+    height: 32,
+    marginLeft: 10,
+    marginRight: 10,
+    borderRadius: 5,
     borderColor: StyleConstants.BORDER_COLOR,
-    borderWidth: 1, 
+    borderWidth: 1,
     backgroundColor: 'white',
   },
+
   stick: {
-    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR, 
-    width: 5, 
-    borderRadius: 5,
+    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR,
+    width: 5,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
   },
+
   infoContainer: {
-    flexDirection: 'column', 
+    flexDirection: 'column',
     justifyContent: 'center',
-    marginLeft: 10,  
+    marginLeft: 10,
     flex: 1,
   },
+
   title: {
-    flex: 1, 
-    flexDirection: 'column', 
-    justifyContent: 'center',
+    backgroundColor: StyleConstants.ALT_BACKGROUND_COLOR,
+    paddingLeft: 10,
   },
+
   headerContainer: {
-    flex: 1, 
-    flexDirection: 'column', 
-    height: 50,
+    flex: 1,
+    flexDirection: 'column',
+    marginLeft: 10,
   },
 });
