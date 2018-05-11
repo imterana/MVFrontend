@@ -23,7 +23,6 @@ export default class AvatarView extends Component {
   }
   static defaultProps = {
     style: {},
-    userId: null,
   }
   /**
    * @return {React.Node} A styled avatar component.
@@ -34,9 +33,9 @@ export default class AvatarView extends Component {
         <Image source={this.photo}
           style={[styles.photoShape, this.props.style]}
         />
-        {isVerified(this.props.userId) &&
+        {this.isVerified &&
           <IconSymbol
-            style={{position: 'absolute', marginLeft: '86%', marginTop: '86%'}}
+            style={{position: 'absolute', bottom: 0, right: 0}}
             name='checkmark'
           />
         }
