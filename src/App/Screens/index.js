@@ -10,4 +10,4 @@ export {default as ListScreen} from './ListScreen';
 export {default as SelectScreen} from './SelectScreen';
 export {default as KarmaCircleScreen} from './KarmaCircleScreen';
 export {default as EventCreationScreen} from './EventCreationScreen';
-
+export {default as PairCreationScreen} from './PairCreationScreen';

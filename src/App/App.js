@@ -14,6 +14,7 @@ import {AboutScreen,
         ListScreen,
         EventCreationScreen,
         CheckboxScreen,
+        PairCreationScreen,
         KarmaCircleScreen} from './Screens';
 
 /**
@@ -43,6 +44,7 @@ export default class App extends Component {
           <Route path='/avatar' component={AvatarScreen} />
           <Route path='/select' component={SelectScreen} />
           <Route path='/karmacircle' component={KarmaCircleScreen} />
+          <Route path='/paircreation' component={PairCreationScreen}/>
         </View>
       </Router>
     );
