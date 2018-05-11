@@ -19,10 +19,10 @@ export default class KarmaCircleScreen extends Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <KarmaCircle value={-50} />
-          <KarmaCircle style={{width: 100, height: 100}} value={250} />
-          <KarmaCircle value={1250} />
-          <KarmaCircle value={2250} />
+          <KarmaCircle userId= "0" />
+          <KarmaCircle style={{width: 100, height: 100}} userId= "1" />
+          <KarmaCircle userId= "2" />
+          <KarmaCircle userId= "3" />
         </View>
       </NavigationScreen>
     );
