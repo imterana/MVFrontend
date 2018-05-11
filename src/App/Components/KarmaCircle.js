@@ -15,8 +15,11 @@ export default class InputField extends Component {
      */
     userId: PropTypes.string,
     value: PropTypes.int,
+    style: PropTypes.any,
   }
-
+  static defaultProps = {
+    style: {},
+  }
   /**
    * @param {value} value - the amount of karma
    * @return {string} background color chosen
@@ -30,13 +33,22 @@ export default class InputField extends Component {
      * It is also may be a good idea to discuss actual
      * borders before mergin complete component.
      */
-    const blueBorder = 100;
-    const redBorder = 500;
-    let background = 'white';
-    if (value >= redBorder) {
-      background = 'red';
-    } else if (value >= blueBorder) {
-      background = 'blue';
+    const redBorder = 0;
+    const red = 'rgb(202, 92, 84)';
+    const greenBorder = 1000;
+    const green = 'rgb(116, 181, 102)';
+    const silverBorder = 2000;
+    const silver = '#C0C0C0';
+    const gold = '#feb236';
+    
+    if (value < redBorder) {
+      background = red;
+    } else if (value < greenBorder) {
+      background = green;
+    } else if (value < silverBorder) {
+      background = silver;
+    } else {
+      background = gold;
     }
     return background;
   }
@@ -60,7 +72,7 @@ export default class InputField extends Component {
       },
     });
     return (
-      <View style={styles.circleShape}>
+      <View style={[styles.circleShape, this.props.style]}>
         <DefaultText style={{color: 'white'}}>
           {this.props.value}
         </DefaultText>
