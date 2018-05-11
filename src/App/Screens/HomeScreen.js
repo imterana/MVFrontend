@@ -41,6 +41,11 @@ export default class HomeScreen extends Component {
               inputfield
             </DefaultText>
           </Link>
+          <Link to='/paircreation'>
+            <DefaultText>
+              pair creation
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
