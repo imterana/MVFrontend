@@ -22,7 +22,7 @@ export default class ButtonScreen extends Component {
           alignItems: 'center',
         }}>
           <Text>Verified user with changed style</Text>
-          <AvatarView userId= "043" style={{width: 150, height:150}}/>
+          <AvatarView userId= "043" style={{width: 150, height: 150}}/>
           <View style={{height: 30}}/>
           <Text>Not verified user</Text>
           <AvatarView userId= "43" />
