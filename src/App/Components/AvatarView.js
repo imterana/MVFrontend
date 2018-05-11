@@ -29,9 +29,9 @@ export default class AvatarView extends Component {
    */
   render() {
     return (
-      <View style={styles.avatarSize}>
+      <View style={[styles.avatarSize, this.props.style]}>
         <Image source={this.photo}
-          style={[styles.photoShape, this.props.style]}
+          style={styles.photoShape}
         />
         {this.isVerified &&
           <IconSymbol
