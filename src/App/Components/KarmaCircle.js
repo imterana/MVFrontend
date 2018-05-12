@@ -32,13 +32,6 @@ export default class KarmaCircle extends Component {
    * by user's karma
    */
   chooseBackground(value) {
-    /**
-     * Colors should be discussed with designer
-     * and, probably, inserted into StyleConstants.js
-     * (and used from there).
-     * It is also may be a good idea to discuss actual
-     * borders before mergin complete component.
-     */
     const redBorder = 0;
     const red = 'rgb(202, 92, 84)';
     const greenBorder = 1000;
@@ -80,7 +73,7 @@ export default class KarmaCircle extends Component {
 }
 
 /**
- * @return {bool} varified or not
+ * @return {bool} amount of karma
  * @param {string} id - id.
  */
 function getValue(id) {
