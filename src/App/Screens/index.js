@@ -4,3 +4,4 @@ export {default as AboutScreen} from './AboutScreen';
 export {default as AvatarScreen} from './AvatarScreen';
 export {default as ButtonScreen} from './ButtonScreen';
 export {default as InputFieldScreen} from './InputFieldScreen.js';
+export {default as SelectScreen} from './SelectScreen';

@@ -8,7 +8,8 @@ import {AboutScreen,
         HomeScreen,
         ButtonScreen,
         AvatarScreen,
-        InputFieldScreen} from './Screens';
+        InputFieldScreen,
+        SelectScreen} from './Screens';
 
 /**
  * The primary app component. Contains all the routes to screens.
@@ -31,6 +32,7 @@ export default class App extends Component {
           <Route path='/button' component={ButtonScreen} />
           <Route path='/inputfield' component={InputFieldScreen} />
           <Route path='/avatar' component={AvatarScreen} />
+          <Route path='/select' component={SelectScreen} />
         </View>
       </Router>
     );
