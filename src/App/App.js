@@ -9,6 +9,7 @@ import {
   HomeScreen,
   ButtonScreen,
   InputFieldScreen,
+  SelectScreen,
   PairCreationScreen,
 } from './Screens';
 
@@ -32,7 +33,11 @@ export default class App extends Component {
           <Route path='/about' component={AboutScreen} />
           <Route path='/button' component={ButtonScreen} />
           <Route path='/inputfield' component={InputFieldScreen} />
+<<<<<<< HEAD
           <Route path='/paircreation' component={PairCreationScreen}/>
+=======
+          <Route path='/select' component={SelectScreen} />
+>>>>>>> origin/master
         </View>
       </Router>
     );

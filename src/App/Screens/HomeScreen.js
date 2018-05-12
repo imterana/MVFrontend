@@ -44,6 +44,9 @@ export default class HomeScreen extends Component {
           <Link to='/paircreation'>
             <DefaultText>
               pair creation
+          <Link to='/select'>
+            <DefaultText>
+              select
             </DefaultText>
           </Link>
         </View>
