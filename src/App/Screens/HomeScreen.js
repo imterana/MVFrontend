@@ -45,6 +45,7 @@ export default class HomeScreen extends Component {
             <DefaultText>
               avatar
             </DefaultText>
+          </Link>
           <Link to='/select'>
             <DefaultText>
               select
