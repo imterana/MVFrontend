@@ -53,7 +53,7 @@ function getPhoto(id) {
 }
 
 /**
- * @return {bool} varified or not
+ * @return {bool} verified or not
  * @param {string} id - id.
  */
 function isVerified(id) {

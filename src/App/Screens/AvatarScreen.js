@@ -5,12 +5,12 @@ import {NavigationScreen} from '../Navigation';
 import {AvatarView} from '../Components';
 
 /**
- * Button example screen.
- * Made only to demonstrate button.
+ * Avatar example screen.
+ * Made only to demonstrate avatar.
  */
-export default class ButtonScreen extends Component {
+export default class AvatarScreen extends Component {
   /**
-   * @return {React.Node} A screen with button.
+   * @return {React.Node} A screen with avatar.
    */
   render() {
     return (
