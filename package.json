@@ -2,6 +2,17 @@
   "name": "MarkAsVisited",
   "version": "0.0.1",
   "private": true,
+  "proxy": {
+    "/accounts/": {
+      "target": "http://localhost:8080"
+    },
+    "/api/": {
+      "target": "http://localhost:8080"
+    },
+    "/admin/": {
+      "target": "http://localhost:8080"
+    }
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "eslint": "eslint src index.js --ext .js",
