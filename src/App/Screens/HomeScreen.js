@@ -21,6 +21,11 @@ export default class HomeScreen extends Component {
         <View style={style.container}>
           <DefaultText>Home Screen</DefaultText>
           <IconSymbol name='html-five' />
+          <Link to='/list'>
+            <DefaultText>
+              list test
+            </DefaultText>
+          </Link>
           <Link to='/details'>
             <DefaultText>
               details
