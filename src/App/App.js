@@ -11,7 +11,7 @@ import {AboutScreen,
         ListScreen,
         AvatarScreen,
         InputFieldScreen,
-        SelectScreen}
+        SelectScreen} from './Screens'
 
 /**
  * The primary app component. Contains all the routes to screens.
