@@ -3,14 +3,16 @@ import {StyleSheet, View} from 'react-native';
 import {Redirect, Route} from 'react-router';
 import Router from './Router';
 
-import {
-  AboutScreen,
-  DetailsScreen,
-  HomeScreen,
-  ButtonScreen,
-  InputFieldScreen,
-  LoginScreen,
-} from './Screens';
+import {AboutScreen,
+        DetailsScreen,
+        HomeScreen,
+        ButtonScreen,
+        InputFieldScreen,
+        ListScreen,
+        AvatarScreen,
+        InputFieldScreen,
+        LoginScreen,
+        SelectScreen} from './Screens';
 
 /**
  * The primary app component. Contains all the routes to screens.
@@ -33,6 +35,9 @@ export default class App extends Component {
           <Route path='/button' component={ButtonScreen} />
           <Route path='/inputfield' component={InputFieldScreen} />
           <Route path='/login' component={LoginScreen} />
+          <Route path='/list' component={ListScreen} />
+          <Route path='/avatar' component={AvatarScreen} />
+          <Route path='/select' component={SelectScreen} />
         </View>
       </Router>
     );
