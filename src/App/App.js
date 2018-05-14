@@ -10,7 +10,6 @@ import {AboutScreen,
         InputFieldScreen,
         ListScreen,
         AvatarScreen,
-        InputFieldScreen,
         LoginScreen,
         SelectScreen} from './Screens';
 
