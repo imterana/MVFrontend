@@ -14,7 +14,7 @@ export default class IconSymbol extends Component {
     /**
      * A style to be passed to the underlying Text component.
      */
-    style: PropTypes.object,
+    style: PropTypes.any,
     /**
      * A name of the symbol as it appears in IconSymbolList.
      */
