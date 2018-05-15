@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 
-// import Cookies from 'js-cookie';
-
 import {NavigationScreen} from '../Navigation';
 import {
   InputField,
@@ -10,12 +8,12 @@ import {
   TimeSelect,
 } from '../Components';
 import {DefaultText, TitleText} from '../Components/Text';
-import StyleConstants from '../StyleConstants';
+import StyleConstants frogm '../StyleConstants';
 
 /**
- * Pair creation screen.
+ * Event creation screen.
  */
-export default class PairCreationScreen extends Component {
+export default class EventCreationScreen extends Component {
   /**
    * @param {Props} props - the props
    */
@@ -90,29 +88,15 @@ export default class PairCreationScreen extends Component {
     data.append('time_from', this.state.startTime.valueOf());
     data.append('time_to', this.state.endTime.valueOf());
     console.log('userId:', this.state.userId);
-    /**
-     * TODO: create event via API. My last version looked like this:
-    fetch('/api/events/CreateEvent', {
-      user: '007',
-      method: 'POST',
-      credentials: 'same-origin',
-      body: data,
-      headers: new Headers({
-        'X-CSRFToken': Cookies.get('csrftoken'),
-      }),
-    }).then((res) => console.log('Result:', res.json()))
-      .catch((error) => console.error('Error:', error));
-      */
-    // TODO: if event was created, go to event screen
   }
 
   /**
-   * @return {React.Node} pair creation screen
+   * @return {React.Node} event creation screen
    */
   render() {
     return (
       <NavigationScreen title={'Создание пары'}>
-        <View style={styles.pairCreationContainer}>
+        <View style={styles.eventCreationContainer}>
           <View>
             <InputField
               placeholder={'Поток'}
@@ -167,7 +151,7 @@ export default class PairCreationScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  pairCreationContainer: {
+  eventCreationContainer: {
     top: 20,
     flex: 0,
   },

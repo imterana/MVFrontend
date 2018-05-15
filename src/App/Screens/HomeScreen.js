@@ -46,9 +46,9 @@ export default class HomeScreen extends Component {
               inputfield
             </DefaultText>
           </Link>
-          <Link to='/paircreation'>
+          <Link to='/eventcreation'>
             <DefaultText>
-              pair creation
+              event creation
             </DefaultText>
           </Link>
           <Link to='/login'>
