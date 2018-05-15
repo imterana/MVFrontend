@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+
+// import Cookies from 'js-cookie';
 
 import {NavigationScreen} from '../Navigation';
-import {Button, InputField} from '../Components';
+import {
+  InputField,
+  DateSelect,
+  TimeSelect,
+} from '../Components';
 import {DefaultText, TitleText} from '../Components/Text';
-import StyleConstants from "../StyleConstants";
+import StyleConstants from '../StyleConstants';
 
 /**
  * Pair creation screen.
@@ -21,10 +27,16 @@ export default class PairCreationScreen extends Component {
       date: new Date(),
       startTime: new Date(),
       endTime: new Date(),
+      // TODO: fetch userId from API
+      userId: null,
     };
 
     this.handleStreamChange = this.handleStreamChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onStartTimeChange = this.onStartTimeChange.bind(this);
+    this.onEndTimeChange = this.onEndTimeChange.bind(this);
+    this.createEvent = this.createEvent.bind(this);
   }
 
   /**
@@ -42,35 +54,111 @@ export default class PairCreationScreen extends Component {
   }
 
   /**
+   * @param {Date} newDate - new selected date
+   */
+  onDateChange(newDate) {
+    newDate = new Date(newDate);
+    this.setState({date: newDate});
+  }
+
+  /**
+   * @param {Date} newStartTime - new selected start time
+   */
+  onStartTimeChange(newStartTime) {
+    newStartTime = new Date(newStartTime);
+    this.setState({startTime: newStartTime});
+  }
+
+  /**
+   * @param {Date} newEndTime - new selected end time
+   */
+  onEndTimeChange(newEndTime) {
+    newEndTime = new Date(newEndTime);
+    this.setState({endTime: newEndTime});
+  }
+
+  /**
+   * Create event button press handler.
+   */
+  createEvent() {
+    if (this.state.endTime < this.state.startTime) {
+      alert('Время окончания события должно быть больше времения начала.');
+      return;
+    }
+    const data = new FormData();
+    data.append('name', this.state.stream + ':' + this.state.name);
+    data.append('time_from', this.state.startTime.valueOf());
+    data.append('time_to', this.state.endTime.valueOf());
+    console.log('userId:', this.state.userId);
+    /**
+     * TODO: create event via API. My last version looked like this:
+    fetch('/api/events/CreateEvent', {
+      user: '007',
+      method: 'POST',
+      credentials: 'same-origin',
+      body: data,
+      headers: new Headers({
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      }),
+    }).then((res) => console.log('Result:', res.json()))
+      .catch((error) => console.error('Error:', error));
+      */
+    // TODO: if event was created, go to event screen
+  }
+
+  /**
    * @return {React.Node} pair creation screen
    */
   render() {
     return (
-      <NavigationScreen>
+      <NavigationScreen title={'Создание пары'}>
         <View style={styles.pairCreationContainer}>
           <View>
             <InputField
               placeholder={'Поток'}
-              handleChange={this.handleStreamChange} />
+              handleChange={this.handleStreamChange}/>
           </View>
           <View style={{paddingTop: 10}}>
             <InputField
               placeholder={'Физика, лекция'}
-              handleChange={this.handleNameChange} />
+              handleChange={this.handleNameChange}/>
           </View>
-          <View style={{paddingTop: 50, paddingLeft: 5}}>
+          <View style={styles.rowsContainer}>
             <View style={{flexDirection: 'row'}}>
-              <TitleText
-                style={styles.titleStyle}>
-                Начало
-              </TitleText>
+              <View style={styles.titleContainer}>
+                <TitleText
+                  style={styles.titleStyle}>
+                  Начало
+                </TitleText>
+              </View>
+              <View style={styles.selectContainer}>
+                <DateSelect onDateChange={this.onDateChange}/>
+              </View>
+              <View style={styles.selectContainer}>
+                <TimeSelect onTimeChange={this.onStartTimeChange}/>
+              </View>
             </View>
-            <View style={{flexDirection: 'row'}}>
-              <TitleText
-                style={styles.titleStyle}>
-                Конец
-              </TitleText>
+            <View style={{flexDirection: 'row', paddingTop: 10}}>
+              <View style={styles.titleContainer}>
+                <TitleText
+                  style={styles.titleStyle}>
+                  Конец
+                </TitleText>
+              </View>
+              <View style={styles.selectContainer}>
+                <TimeSelect onTimeChange={this.onEndTimeChange}/>
+              </View>
             </View>
+          </View>
+          <View style={{alignItems: 'center', marginTop: 100}}>
+            <TouchableOpacity
+              onPress={this.createEvent}
+              disabled={!this.state.stream || !this.state.name}
+              style={styles.lightButtonContainer}>
+              <DefaultText style={{color: StyleConstants.ALT_BACKGROUND_COLOR}}>
+                Создать
+              </DefaultText>
+            </TouchableOpacity>
           </View>
         </View>
       </NavigationScreen>
@@ -83,8 +171,37 @@ const styles = StyleSheet.create({
     top: 20,
     flex: 0,
   },
+  rowsContainer: {
+    paddingTop: 50,
+    paddingLeft: 5,
+  },
   titleStyle: {
     color: StyleConstants.ALT_BACKGROUND_COLOR,
-    fontSize: 25,
+    fontSize: 20,
+  },
+  titleContainer: {
+    flex: 0,
+    /**
+     * width found out empirically, so
+     * that it allows to write 'Начало'
+     * in one row
+     */
+    width: 90,
+  },
+  selectContainer: {
+    flex: 0,
+    width: 120,
+    paddingLeft: 40,
+  },
+  lightButtonContainer: {
+    flex: 0,
+    width: 120,
+    height: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    borderRadius: StyleConstants.BORDER_RADIUS,
+    borderColor: StyleConstants.BORDER_COLOR,
+    borderWidth: 1,
   },
 });

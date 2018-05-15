@@ -56,6 +56,11 @@ export default class HomeScreen extends Component {
               event creation
             </DefaultText>
           </Link>
+          <Link to='/paircreation'>
+            <DefaultText>
+              pair creation
+            </DefaultText>
+          </Link>
           <Link to='/login'>
             <DefaultText>
               login
