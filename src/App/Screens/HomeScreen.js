@@ -46,6 +46,11 @@ export default class HomeScreen extends Component {
               select
             </DefaultText>
           </Link>
+          <Link to='/eventselect'>
+            <DefaultText>
+              enent select
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
