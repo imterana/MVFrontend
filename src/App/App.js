@@ -14,6 +14,7 @@ import {
   AvatarScreen,
   ListScreen,
   EventCreationScreen,
+  CheckboxScreen,
 } from './Screens';
 
 /**
@@ -36,6 +37,7 @@ export default class App extends Component {
           <Route path='/about' component={AboutScreen} />
           <Route path='/button' component={ButtonScreen} />
           <Route path='/inputfield' component={InputFieldScreen} />
+          <Route path='/checkbox' component={CheckboxScreen} />
           <Route path='/eventcreation' component={EventCreationScreen}/>
           <Route path='/login' component={LoginScreen} />
           <Route path='/list' component={ListScreen} />
