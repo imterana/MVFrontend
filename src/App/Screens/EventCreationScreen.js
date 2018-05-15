@@ -137,7 +137,7 @@ export default class EventCreationScreen extends Component {
           <View style={{alignItems: 'center', marginTop: 100}}>
             <TouchableOpacity
               onPress={this.createEvent}
-              disabled={!this.state.stream || !this.state.name}
+              disabled={!this.state.name}
               style={styles.lightButtonContainer}>
               <DefaultText style={{color: StyleConstants.ALT_BACKGROUND_COLOR}}>
                 Создать
