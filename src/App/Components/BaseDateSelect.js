@@ -23,7 +23,7 @@ export default class BaseDateSelect extends Component {
   static defaultProps = {
     minDate: null,
     maxDate: null,
-    onDateChange: () => {},
+    onDateChange: (newDate) => {},
   }
 
   /**
