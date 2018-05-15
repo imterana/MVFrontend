@@ -8,7 +8,7 @@ import {
   TimeSelect,
 } from '../Components';
 import {DefaultText, TitleText} from '../Components/Text';
-import StyleConstants frogm '../StyleConstants';
+import StyleConstants from '../StyleConstants';
 
 /**
  * Event creation screen.
