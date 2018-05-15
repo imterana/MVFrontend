@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, ListView} from 'react-native';
 
 import {NavigationScreen} from '../Navigation';
-import {InputField, SearchField, BigListView} from '../Components';
+import {SearchField, BigListView} from '../Components';
 
 /**
  * Event selection screen.
