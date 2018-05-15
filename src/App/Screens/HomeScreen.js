@@ -21,6 +21,11 @@ export default class HomeScreen extends Component {
         <View style={style.container}>
           <DefaultText>Home Screen</DefaultText>
           <IconSymbol name='html-five' />
+          <Link to='/list'>
+            <DefaultText>
+              list test
+            </DefaultText>
+          </Link>
           <Link to='/details'>
             <DefaultText>
               details
@@ -44,6 +49,18 @@ export default class HomeScreen extends Component {
           <Link to='/paircreation'>
             <DefaultText>
               pair creation
+            </DefaultText>
+          </Link>
+          <Link to='/login'>
+            <DefaultText>
+              login
+            </DefaultText>
+          </Link>
+          <Link to='/avatar'>
+            <DefaultText>
+              avatar
+            </DefaultText>
+          </Link>
           <Link to='/select'>
             <DefaultText>
               select

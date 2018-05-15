@@ -2,6 +2,17 @@
   "name": "MarkAsVisited",
   "version": "0.0.1",
   "private": true,
+  "proxy": {
+    "/accounts/": {
+      "target": "http://localhost:8080"
+    },
+    "/api/": {
+      "target": "http://localhost:8080"
+    },
+    "/admin/": {
+      "target": "http://localhost:8080"
+    }
+  },
   "scripts": {
     "build": "node scripts/build.js",
     "eslint": "eslint src index.js --ext .js",
@@ -36,6 +47,7 @@
     "history": "^4.7.2",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "js-cookie": "^2.2.0",
     "moment": "^2.22.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
