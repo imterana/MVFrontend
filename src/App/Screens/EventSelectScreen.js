@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, ListView} from 'react-native';
-
 import {NavigationScreen} from '../Navigation';
 import {SearchField, BigListView} from '../Components';
 
