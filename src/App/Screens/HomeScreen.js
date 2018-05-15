@@ -63,7 +63,7 @@ export default class HomeScreen extends Component {
           </Link>
           <Link to='/eventselect'>
             <DefaultText>
-              enent select
+              event select
             </DefaultText>
           </Link>
         </View>

@@ -93,8 +93,8 @@ const style = StyleSheet.create({
     height: 50,
     paddingLeft: 10,
     paddingRight: 10,
-    marginLeft: 5,
-    marginRight: 5,
+    marginLeft: 10,
+    marginRight: 10,
   },
   icon: {
     fontSize: 16,

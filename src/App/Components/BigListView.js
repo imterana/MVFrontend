@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     marginLeft: 10,
-    marginBottom: 5,
+    marginTop: 10,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
