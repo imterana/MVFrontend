@@ -15,7 +15,7 @@ export default class InputFieldScreen extends Component {
   render() {
     return (
       <NavigationScreen>
-        <View style={style.pairCreationContainer}>
+        <View style={style.InputFieldContainer}>
           <InputField />
           <SearchField />
         </View>
@@ -25,7 +25,7 @@ export default class InputFieldScreen extends Component {
 }
 
 const style = StyleSheet.create({
-  pairCreationContainer: {
+  InputFieldContainer: {
     top: 10,
     flex: 0,
     height: 50,
