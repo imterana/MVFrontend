@@ -76,11 +76,6 @@ export default class HomeScreen extends Component {
               karmacircle
             </DefaultText>
           </Link>
-          <Link to='/paircreation'>
-            <DefaultText>
-              pair creation
-            </DefaultText>
-          </Link>
           <Link to='/friendlist'>
             <DefaultText>
               friend list
