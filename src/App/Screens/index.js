@@ -12,4 +12,4 @@ export {default as EventSelectScreen} from './EventSelectScreen';
 export {default as KarmaCircleScreen} from './KarmaCircleScreen';
 export {default as EventCreationScreen} from './EventCreationScreen';
 export {default as FriendListScreen} from './FriendListScreen';
-
+export {default as MarkScreen} from './MarkScreen';
