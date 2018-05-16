@@ -14,7 +14,6 @@ import {AboutScreen,
         ListScreen,
         EventCreationScreen,
         CheckboxScreen,
-        PairCreationScreen,
         KarmaCircleScreen,
         FriendListScreen} from './Screens';
 
