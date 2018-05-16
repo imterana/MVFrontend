@@ -46,6 +46,16 @@ export default class HomeScreen extends Component {
               inputfield
             </DefaultText>
           </Link>
+          <Link to='/checkbox'>
+            <DefaultText>
+              checkbox
+            </DefaultText>
+          </Link>
+          <Link to='/eventcreation'>
+            <DefaultText>
+              event creation
+            </DefaultText>
+          </Link>
           <Link to='/login'>
             <DefaultText>
               login
@@ -64,6 +74,11 @@ export default class HomeScreen extends Component {
           <Link to='/eventselect'>
             <DefaultText>
               event select
+            </DefaultText>
+          </Link>
+          <Link to='/karmacircle'>
+            <DefaultText>
+              karmacircle
             </DefaultText>
           </Link>
         </View>

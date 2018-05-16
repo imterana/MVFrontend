@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     borderRadius: StyleConstants.BORDER_RADIUS,
     borderColor: StyleConstants.BORDER_COLOR,
     flex: 0,
-    height: 25,
+    height: 27,
     width: 80,
   },
   pickerStyle: {

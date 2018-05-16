@@ -83,7 +83,7 @@ export default class CustomTextInput extends Component {
 
 const style = StyleSheet.create({
   inputViewContainer: {
-    borderRadius: 10,
+    borderRadius: StyleConstants.BORDER_RADIUS,
     borderWidth: 1,
     borderColor: StyleConstants.BORDER_COLOR,
     flex: 0,
