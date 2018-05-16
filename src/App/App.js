@@ -15,7 +15,8 @@ import {AboutScreen,
         ListScreen,
         EventCreationScreen,
         CheckboxScreen,
-        KarmaCircleScreen} from './Screens';
+        KarmaCircleScreen,
+        FriendListScreen} from './Screens';
 
 /**
  * The primary app component. Contains all the routes to screens.
@@ -45,6 +46,7 @@ export default class App extends Component {
           <Route path='/select' component={SelectScreen} />
           <Route path='/eventselect' component={EventSelectScreen} />
           <Route path='/karmacircle' component={KarmaCircleScreen} />
+          <Route path='/friendlist' component={FriendListScreen}/>
         </View>
       </Router>
     );

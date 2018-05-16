@@ -81,6 +81,11 @@ export default class HomeScreen extends Component {
               karmacircle
             </DefaultText>
           </Link>
+          <Link to='/friendlist'>
+            <DefaultText>
+              friend list
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
