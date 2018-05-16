@@ -10,6 +10,7 @@ import {AboutScreen,
         InputFieldScreen,
         SelectScreen,
         LoginScreen,
+        EventSelectScreen,
         AvatarScreen,
         ListScreen,
         EventCreationScreen,
@@ -42,6 +43,7 @@ export default class App extends Component {
           <Route path='/list' component={ListScreen} />
           <Route path='/avatar' component={AvatarScreen} />
           <Route path='/select' component={SelectScreen} />
+          <Route path='/eventselect' component={EventSelectScreen} />
           <Route path='/karmacircle' component={KarmaCircleScreen} />
         </View>
       </Router>
