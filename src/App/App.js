@@ -44,7 +44,6 @@ export default class App extends Component {
           <Route path='/avatar' component={AvatarScreen} />
           <Route path='/select' component={SelectScreen} />
           <Route path='/karmacircle' component={KarmaCircleScreen} />
-          <Route path='/paircreation' component={PairCreationScreen}/>
           <Route path='/friendlist' component={FriendListScreen}/>
         </View>
       </Router>
