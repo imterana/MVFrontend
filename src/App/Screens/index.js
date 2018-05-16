@@ -11,3 +11,4 @@ export {default as SelectScreen} from './SelectScreen';
 export {default as KarmaCircleScreen} from './KarmaCircleScreen';
 export {default as EventCreationScreen} from './EventCreationScreen';
 export {default as PairCreationScreen} from './PairCreationScreen';
+export {default as FriendListScreen} from './FriendListScreen';

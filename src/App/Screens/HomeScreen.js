@@ -56,11 +56,6 @@ export default class HomeScreen extends Component {
               event creation
             </DefaultText>
           </Link>
-          <Link to='/paircreation'>
-            <DefaultText>
-              pair creation
-            </DefaultText>
-          </Link>
           <Link to='/login'>
             <DefaultText>
               login
@@ -84,6 +79,11 @@ export default class HomeScreen extends Component {
           <Link to='/paircreation'>
             <DefaultText>
               pair creation
+            </DefaultText>
+          </Link>
+          <Link to='/friendlist'>
+            <DefaultText>
+              friend list
             </DefaultText>
           </Link>
         </View>
