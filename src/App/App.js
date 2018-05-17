@@ -22,8 +22,10 @@ import {
     KarmaCircleScreen,
     ListScreen,
     LoginScreen,
+    MarkScreen,
     SelectScreen,
 } from './Screens';
+
 
 const store = createStore(markAsVisited);
 
@@ -58,6 +60,7 @@ export default class App extends Component {
             <Route path='/karmacircle' component={KarmaCircleScreen} />
             <Route path='/list' component={ListScreen} />
             <Route path='/login' component={LoginScreen} />
+            <Route path='/markscreen' component={MarkScreen}/>
             <Route path='/select' component={SelectScreen} />
           </View>
         </Router>

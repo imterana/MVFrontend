@@ -86,6 +86,11 @@ export default class HomeScreen extends Component {
               friend list
             </DefaultText>
           </Link>
+          <Link to='/markscreen'>
+            <DefaultText>
+              mark screen
+            </DefaultText>
+          </Link>
         </View>
       </NavigationScreen>
     );
