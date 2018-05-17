@@ -10,30 +10,27 @@ export default class AvatarView extends Component {
   /**
    * @param {props} props
    */
-  constructor(props) {
-    super(props);
-    let id = this.props.userId;
-    this.photo = getPhoto(id);
-    this.isVerified = isVerified(id);
-  }
-
   static propTypes = {
     style: PropTypes.any,
-    userId: PropTypes.string.isRequired,
+    isVerified: PropTypes.bool,
+    photo: PropTypes.string,
   }
   static defaultProps = {
     style: {},
+    isVerified: false,
+    photo: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg',
   }
   /**
    * @return {React.Node} A styled avatar component.
    */
   render() {
+    const {isVerified, photo, style} = this.props;
     return (
-      <View style={[styles.avatarSize, this.props.style]}>
-        <Image source={this.photo}
+      <View style={[styles.avatarSize, style]}>
+        <Image source={photo}
           style={styles.photoShape}
         />
-        {this.isVerified &&
+        {isVerified &&
           <IconSymbol
             style={{position: 'absolute', bottom: 0, right: 0}}
             name='checkmark'
@@ -42,22 +39,6 @@ export default class AvatarView extends Component {
       </View>
     );
   }
-}
-
-/**
- * @return {uri} uri
- * @param {string} id - id.
- */
-function getPhoto(id) {
-  return {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
-}
-
-/**
- * @return {bool} verified or not
- * @param {string} id - id.
- */
-function isVerified(id) {
-  return id.charAt(0) == '0';
 }
 
 const styles = StyleSheet.create({

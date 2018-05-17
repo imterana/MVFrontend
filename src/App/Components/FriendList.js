@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ListView, TouchableOpacity, View, StyleSheet} from 'react-native';
+
 import StyleConstants from '../StyleConstants';
 import {DefaultText} from '../Components/Text';
 import {IconSymbol, AvatarView} from '../Components';
@@ -10,17 +11,9 @@ import {IconSymbol, AvatarView} from '../Components';
  * @class ListRow
  */
 class ListRow extends Component {
-  /**
-   * @param {Props} props - the props.
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'Name Surname',
-    };
-  }
   static propTypes = {
-    userId: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    photo: PropTypes.string,
     onPress: PropTypes.func,
   }
 
@@ -28,15 +21,15 @@ class ListRow extends Component {
    * @return {React.Node} A list element with specified title and onpress.
    */
   render() {
-    const {userId, onPress} = this.props;
+    const {name, photo, onPress} = this.props;
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={styles.rowContainer}>
           <View style={styles.stick}/>
           <View style={styles.infoContainer}>
-            <AvatarView userId= {userId} style={styles.avatar}/>
+            <AvatarView photo={photo} style={styles.avatar}/>
             <View style={styles.textContainer}>
-              <DefaultText>{this.state.name}</DefaultText>
+              <DefaultText>{name}</DefaultText>
             </View>
           </View>
           <View style={styles.iconContainer}>

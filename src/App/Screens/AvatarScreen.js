@@ -22,10 +22,10 @@ export default class AvatarScreen extends Component {
           alignItems: 'center',
         }}>
           <Text>Verified user with changed style</Text>
-          <AvatarView userId= "043" style={{width: 150, height: 150}}/>
+          <AvatarView isVerified={true} style={{width: 150, height: 150}}/>
           <View style={{height: 30}}/>
           <Text>Not verified user</Text>
-          <AvatarView userId= "43" />
+          <AvatarView isVerified={false}/>
         </View>
       </NavigationScreen>
     );

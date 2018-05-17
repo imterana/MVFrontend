@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
+import PropTypes from 'prop-types';
+import {Redirect} from 'react-router';
+import {connect} from 'react-redux';
 
 import {BackendLink, IconSymbol} from '../Components';
 import {DefaultText} from '../Components/Text';
 import StyleConstants from '../StyleConstants';
+import {auth} from '../Components/Api';
+import {setUserId} from '../Actions';
 
 const logo = require('./img/logo.png');
 
@@ -11,13 +16,44 @@ const logo = require('./img/logo.png');
  * A Login screen class with authorisation links.
  * @class LoginScreen
  */
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
+  /**
+   * @param {Object} props - the props.
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: props.loggedIn,
+    };
+    auth.getCurrentUserId().then(this.updateUserId.bind(this));
+  }
+
+  static propTypes = {
+    loggedIn: PropTypes.Boolean,
+    setUserId: PropTypes.Any,
+  }
+
+  static defaultProps = {
+    loggedIn: false,
+  }
+
+  /**
+   * Fetch callback that sets the user id to the one returned by the backend.
+   * @param {Object} response - the response returned by the API.
+   */
+  updateUserId(response) {
+    const userId = response != null ? response.user_id : null;
+    this.props.setUserId(userId);
+  }
+
   /**
    * @return {React.Node} A login screen.
    */
   render() {
+    const {loggedIn} = this.props;
     return (
       <View style={style.container}>
+        {loggedIn && <Redirect to='/home/' />}
         <View style={style.logoContainer}>
           <Image
             source={logo}
@@ -54,6 +90,21 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  loggedIn: state.userId != null,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserId: (userId) => {
+    dispatch(setUserId(userId));
+  },
+});
+
+const ConnectedLoginScreen = connect(mapStateToProps,
+                                     mapDispatchToProps)(LoginScreen);
+
+export default ConnectedLoginScreen;
 
 const style = StyleSheet.create({
   container: {

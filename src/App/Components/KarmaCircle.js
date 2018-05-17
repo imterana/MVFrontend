@@ -14,13 +14,12 @@ export default class KarmaCircle extends Component {
    */
   constructor(props) {
     super(props);
-    this.value = getValue(this.props.userId);
   }
   static propTypes = {
     /**
      * User ID, used to obtain user's amount of karma.
      */
-    userId: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
     style: PropTypes.any,
   }
   static defaultProps = {
@@ -58,35 +57,19 @@ export default class KarmaCircle extends Component {
      * Amount of karma should be obtained using this.props.userId
      * by appropriate API call.
      */
-    const background = this.chooseBackground(this.value);
+    const {value, style} = this.props;
+    const background = this.chooseBackground(value);
     return (
       <View style={[styles.circleShape,
         {backgroundColor: background},
-        this.props.style,
+        style,
       ]}>
         <DefaultText style={{color: 'white'}}>
-          {this.value}
+          {value}
         </DefaultText>
       </View>
     );
   }
-}
-
-/**
- * @return {bool} amount of karma
- * @param {string} id - id.
- */
-function getValue(id) {
-  let str = id.charAt(0);
-  if (str == '0') {
-      return -50;
-    } else if (str == '1') {
-      return 250;
-    } if (str == '2') {
-      return 1250;
-    } if (str == '3') {
-      return 2250;
-    }
 }
 
 const styles = StyleSheet.create({
