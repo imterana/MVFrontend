@@ -8,6 +8,7 @@ import {
   TimeSelect,
 } from '../Components';
 import {DefaultText, TitleText} from '../Components/Text';
+import {events} from '../Components/Api';
 import StyleConstants from '../StyleConstants';
 
 /**
@@ -25,8 +26,6 @@ export default class EventCreationScreen extends Component {
       date: new Date(),
       startTime: new Date(),
       endTime: new Date(),
-      // TODO: fetch userId from API
-      userId: null,
     };
 
     this.handleStreamChange = this.handleStreamChange.bind(this);
@@ -83,11 +82,16 @@ export default class EventCreationScreen extends Component {
       alert('Время окончания события должно быть больше времения начала.');
       return;
     }
-    const data = new FormData();
-    data.append('name', this.state.stream + ':' + this.state.name);
-    data.append('time_from', this.state.startTime.valueOf());
-    data.append('time_to', this.state.endTime.valueOf());
-    console.log('userId:', this.state.userId);
+    const eventName = this.state.stream + ':' + this.state.name;
+    const timeFrom = Math.floor(this.state.startTime.valueOf() / 1000);
+    const timeTo = Math.floor(this.state.endTime.valueOf() / 1000);
+    events.createEvent({
+      name: eventName,
+      time_from: timeFrom,
+      time_to: timeTo,
+    }).catch((err) => {
+      alert(err.message);
+    });
   }
 
   /**

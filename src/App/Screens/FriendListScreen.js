@@ -21,12 +21,11 @@ export default class FriendListScreen extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([
         {
-          userId: '043',
-          onPress: null,
+          name: 'Аркадий',
         },
         {
-          userId: '123',
-          onPress: null,
+          name: 'Петр',
+          photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/4%2C5V-AA-battery.jpg/125px-4%2C5V-AA-battery.jpg',
         },
       ]),
     };
