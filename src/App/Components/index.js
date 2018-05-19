@@ -13,4 +13,5 @@ export {default as DateSelect} from './DateSelect';
 export {default as TimeSelect} from './TimeSelect';
 export {default as KarmaCircle} from './KarmaCircle';
 export {default as FriendList} from './FriendList';
+export {default as SideBarListView} from './SideBarListView';
 
