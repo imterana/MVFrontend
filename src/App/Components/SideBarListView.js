@@ -35,7 +35,7 @@ class ListRow extends Component {
  * A styled list component with a DataSource.
  * @class DefaultListView
  */
-export default class AdminListView extends Component {
+export default class SideBarListView extends Component {
   /**
    * @return {React.Node} a styled list component
    */
