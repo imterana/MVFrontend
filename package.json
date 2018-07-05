@@ -59,6 +59,7 @@
     "react-dev-utils": "^5.0.0",
     "react-dom": "^16.2.0",
     "react-native": "0.54.2",
+    "react-native-calendar-picker": "^5.19.0",
     "react-native-web": "^0.5.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

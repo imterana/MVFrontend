@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 
-import CalendarPicker from './CalendarPicker';
+import CalendarPicker from 'react-native-calendar-picker';
 
 import BaseDateSelect from './BaseDateSelect';
 import SelectField from './SelectField';

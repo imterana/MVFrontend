@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {ListView, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import StyleConstants from '../StyleConstants';
-import {IconSymbol} from '../Components';
-import {AltText} from '../Components/Text';
+import {ListView, TouchableOpacity, View, StyleSheet} from 'react-native';
+
+import {AltText, DefaultText} from 'Components/Text';
+import StyleConstants from 'StyleConstants';
+
+import IconSymbol from './IconSymbol.js';
 
 /**
  * A pressable list row element with custom title.
@@ -27,7 +29,7 @@ class ListRow extends Component {
           <View style={styles.stick}/>
           <View style={styles.infoContainer}>
             <View style={styles.title}>
-              <Text>{title}</Text>
+              <DefaultText>{title}</DefaultText>
             </View>
             <View style={styles.subtitle}>
               <AltText>{subtitle}</AltText>

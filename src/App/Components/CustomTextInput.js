@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, TextInput, View} from 'react-native';
 
-import StyleConstants from '../StyleConstants';
+import StyleConstants from 'StyleConstants';
+
 import IconSymbol from './IconSymbol';
 
 /**
@@ -23,12 +24,17 @@ export default class CustomTextInput extends Component {
      * Custom onChange function.
      */
     handleChange: PropTypes.func,
+    /**
+     * Default value.
+     */
+    value: PropTypes.string,
   }
 
   static defaultProps = {
     search: false,
     placeholder: 'Урматы, семинар',
     handleChange: null,
+    value: '',
   }
 
   /**
@@ -38,8 +44,17 @@ export default class CustomTextInput extends Component {
    */
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {value: props.value};
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  /**
+   * @param {Object} nextProps - new props
+   * @param {Object} prevState - old state
+   * @return {Object} new state
+   */
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return {value: nextProps.value ? nextProps.value : prevState.value};
   }
 
   /**
@@ -68,6 +83,7 @@ export default class CustomTextInput extends Component {
             * to TextInput, when passing {...other}.
             */
            handleChange, // eslint-disable-line no-unused-vars
+           value, // eslint-disable-line no-unused-vars
            ...other} = this.props;
     return (
       <View style={style.inputViewContainer}>

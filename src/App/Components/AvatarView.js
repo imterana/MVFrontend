@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Image, View, StyleSheet} from 'react-native';
-import {IconSymbol} from '../Components';
+
+import IconSymbol from './IconSymbol.js';
 
 /**
  * A custom stylable avatar component.
