@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {ListView, View, StyleSheet} from 'react-native';
 
-import {BigListView, SmallListView} from '../Components';
-import {NavigationScreen} from '../Navigation';
-import {AltText} from '../Components/Text';
+import {BigListView, SmallListView} from 'Components';
+import {NavigationScreen} from 'Navigation';
+import {AltText} from 'Components/Text';
 
 /**
  * A screen demonstrating ListView.

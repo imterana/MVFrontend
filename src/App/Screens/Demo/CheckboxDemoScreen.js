@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
 
-import {NavigationScreen} from '../Navigation';
-import {Checkbox} from '../Components';
+import {NavigationScreen} from 'Navigation';
+import {Checkbox} from 'Components';
 
 /**
  * Checkbox example screen.

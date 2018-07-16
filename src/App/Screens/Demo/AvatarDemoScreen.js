@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
 
-import {NavigationScreen} from '../Navigation';
-import {AvatarView} from '../Components';
+import {NavigationScreen} from 'Navigation';
+import {AvatarView} from 'Components';
+import {DefaultText} from 'Components/Text';
 
 /**
  * Avatar example screen.
@@ -21,10 +22,10 @@ export default class AvatarScreen extends Component {
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-          <Text>Verified user with changed style</Text>
+          <DefaultText>Verified user with changed style</DefaultText>
           <AvatarView isVerified={true} style={{width: 150, height: 150}}/>
           <View style={{height: 30}}/>
-          <Text>Not verified user</Text>
+          <DefaultText>Not verified user</DefaultText>
           <AvatarView isVerified={false}/>
         </View>
       </NavigationScreen>

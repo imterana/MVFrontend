@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import {NavigationScreen} from '../Navigation';
-import {DefaultText} from '../Components/Text';
+import {NavigationScreen} from 'Navigation';
+import {DefaultText} from 'Components/Text';
 
 /**
  * A lorem ipsum screen.

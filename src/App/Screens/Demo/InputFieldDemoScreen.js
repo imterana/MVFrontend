@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 
-import {NavigationScreen} from '../Navigation';
-import {InputField, SearchField} from '../Components';
+import {NavigationScreen} from 'Navigation';
+import {InputField, SearchField} from 'Components';
 
 /**
  * InputField example screen.
