@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import {StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native';
 
-import {default as StyleConstants} from '../StyleConstants';
-
 /**
  * A custom stylable button component with arbitrary content.
  */
@@ -47,7 +45,6 @@ export default class NavButton extends Component {
 
 const style = StyleSheet.create({
   navButton: {
-    backgroundColor: StyleConstants.CONTROL_COLOR,
     height: 50,
     flex: 1,
   },
