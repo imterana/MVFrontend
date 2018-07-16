@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ListView, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-import StyleConstants from '../StyleConstants';
-import {DefaultText} from '../Components/Text';
-import {IconSymbol, AvatarView} from '../Components';
+import StyleConstants from 'StyleConstants';
+import {DefaultText} from 'Components/Text';
 
+import AvatarView from './AvatarView';
+import IconSymbol from './IconSymbol';
 /**
  * A pressable list row element with custom title.
  * @class ListRow
@@ -13,6 +14,7 @@ import {IconSymbol, AvatarView} from '../Components';
 class ListRow extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
+    confirmed: PropTypes.bool,
     photo: PropTypes.string,
     onPress: PropTypes.func,
   }
@@ -46,17 +48,6 @@ class ListRow extends Component {
  * @class FriendListView
  */
 export default class FriendList extends Component {
-  /**
-   * @return {React.Node} a styled list component
-   */
-  static propTypes = {
-    withHeaders: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    withHeaders: false,
-  }
-
   /**
    * @return {React.Node} A list
    */

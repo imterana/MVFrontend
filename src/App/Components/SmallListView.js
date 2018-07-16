@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ListView, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import StyleConstants from '../StyleConstants';
+
+import StyleConstants from 'StyleConstants';
 
 /**
  * A pressable list row element with custom title.

@@ -4,9 +4,10 @@ import {StyleSheet,
         TouchableOpacity} from 'react-native';
 import PropTypes from 'prop-types';
 
-import StyleConstants from '../StyleConstants';
+import DefaultText from 'Components/Text/DefaultText';
+import StyleConstants from 'StyleConstants';
+
 import IconSymbol from './IconSymbol';
-import DefaultText from './Text/DefaultText';
 
 /**
  * Custom picker (aka select) field component.

@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 
+import StyleConstants from 'StyleConstants';
+
 import IconSymbol from './IconSymbol';
-import StyleConstants from '../StyleConstants';
 
 /**
  * Custom checkbox.

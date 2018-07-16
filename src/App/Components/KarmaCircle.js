@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
-import DefaultText from './Text/DefaultText';
+
+import DefaultText from 'Components/Text/DefaultText';
 
 /**
  * Custom component, which is used to visualise

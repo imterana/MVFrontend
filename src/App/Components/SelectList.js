@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {ListView, TouchableOpacity, View, StyleSheet} from 'react-native';
 
-import {DefaultText} from './Text';
-import StyleConstants from '../StyleConstants';
+import {DefaultText} from 'Components/Text';
+import StyleConstants from 'StyleConstants';
 
 /**
  * SelectList custom component.
