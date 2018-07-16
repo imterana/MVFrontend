@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import {StyleSheet, View} from 'react-native';
 import {withRouter} from 'react-router-dom';
 
-import NavButton from './NavButton';
+import {IconSymbol} from 'Components';
 
+import NavButton from './NavButton';
 import {NavigationBar} from './NavigationBar';
 import SideBar from './SideBar';
 
@@ -77,9 +78,15 @@ class NavigationScreen extends Component {
     const rightControl = this.props.rightControl;
     return (
       <NavigationBar
-        leftControl={
-          <NavButton onPress={leftFunction}/>
-        }
+        leftControl={(
+          <NavButton onPress={leftFunction}>
+            <View style={style.buttonContainer}>
+              {this.props.hamburger
+                  ? <IconSymbol name='menu' style={style.symbol}/>
+                  : <IconSymbol name='arrow-left2' style={style.symbol}/>}
+            </View>
+          </NavButton>
+        )}
         title={this.props.title}
         rightControl={rightControl}
       />
@@ -90,10 +97,10 @@ class NavigationScreen extends Component {
    * Toggles hamburger menu visibility.
    */
   onHamburgerPress() {
-    this.setState((prevState, props) => ({
-      ...prevState,
-      hamburgerMenuVisible: !prevState.hamburgerMenuVisible,
-    }));
+    this.setState({
+      ...this.prevState,
+      hamburgerMenuVisible: !this.state.hamburgerMenuVisible,
+    });
   }
 
   /**
@@ -103,10 +110,18 @@ class NavigationScreen extends Component {
     const {hamburgerMenuVisible} = this.state;
     return (
       <View style={style.controllerContainer}>
-          { hamburgerMenuVisible && <SideBar /> }
-          <View style={{flex: 1}}>
-            {this.navBar(this.props)}
-            <View style={{flex: 1, bottom: 0}}>
+          {this.navBar()}
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              overflow: hamburgerMenuVisible ? 'hidden' : 'visible',
+            }}>
+            { hamburgerMenuVisible && <SideBar /> }
+            <View style={{
+              bottom: 0,
+              width: '100%',
+            }}>
               {this.props.children}
             </View>
           </View>
@@ -118,11 +133,20 @@ class NavigationScreen extends Component {
 const style = StyleSheet.create({
   controllerContainer: {
     position: 'absolute',
-    flexDirection: 'row',
     width: '100%',
     height: '100%',
     margin: 0,
     padding: 0,
+  },
+  symbol: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 24,
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

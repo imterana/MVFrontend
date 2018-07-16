@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {View, StyleSheet} from 'react-native';
 
-import StyleConstants from '../StyleConstants';
-import {TitleText} from '../Components/Text';
+import {TitleText} from 'Components/Text';
+import StyleConstants from 'StyleConstants';
 
 /**
  * Navigation bar component. Contains a title, and two controls on each side.
