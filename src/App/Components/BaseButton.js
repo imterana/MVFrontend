@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
+import StyleConstants from 'StyleConstants';
+
 import TitleText from './Text/TitleText';
-import StyleConstants from '../StyleConstants';
 
 /**
  * A custom button used for most buttons in project.
