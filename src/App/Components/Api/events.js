@@ -31,6 +31,10 @@ export const methods = {
     url: `${baseEventsApiUrl}GetJoinedEvents`,
     method: 'GET',
   },
+  getEventByID: {
+    url: `${baseEventsApiUrl}GetEventByID`,
+    method: 'GET',
+  },
 };
 
 Object.keys(methods).forEach((key) => {
