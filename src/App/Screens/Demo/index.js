@@ -16,6 +16,7 @@ import KarmaCircleDemoScreen from './KarmaCircleDemoScreen';
 import ListDemoScreen from './ListDemoScreen';
 import LongTextDemoScreen from './LongTextDemoScreen';
 import SelectDemoScreen from './SelectDemoScreen';
+import MarkDemoScreen from './MarkDemoScreen';
 
 const demoScreens = [
   {
@@ -57,6 +58,10 @@ const demoScreens = [
   {
     url: 'select',
     component: SelectDemoScreen,
+  },
+  {
+    url: 'mark',
+    component: MarkDemoScreen,
   },
 ];
 
