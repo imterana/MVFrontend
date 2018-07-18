@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Redirect, Route} from 'react-router';
+import {Route} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
@@ -8,22 +8,10 @@ import Router from './Router';
 import {markAsVisited} from './Reducers';
 
 import {
-    AboutScreen,
-    AvatarScreen,
-    ButtonScreen,
-    CheckboxScreen,
-    DetailsScreen,
     EventCreationScreen,
     EventScreen,
     EventSelectScreen,
-    FriendListScreen,
-    HomeScreen,
-    InputFieldScreen,
-    KarmaCircleScreen,
-    ListScreen,
     LoginScreen,
-    MarkScreen,
-    SelectScreen,
 } from './Screens';
 
 
@@ -42,26 +30,10 @@ export default class App extends Component {
       <Provider store={store}>
         <Router>
           <View style={styles.container}>
-            <Route exact path="/" render={() => (
-              store.getState().loggedIn ? <Redirect to='/home/' />
-                                        : <Redirect to='/login' />)}
-            />
-            <Route path='/about' component={AboutScreen} />
-            <Route path='/avatar' component={AvatarScreen} />
-            <Route path='/button' component={ButtonScreen} />
-            <Route path='/checkbox' component={CheckboxScreen} />
-            <Route path='/details' component={DetailsScreen} />
-            <Route path='/event/:eventId' component={EventScreen} />
-            <Route path='/eventcreation' component={EventCreationScreen}/>
-            <Route path='/eventselect' component={EventSelectScreen} />
-            <Route path='/friendlist' component={FriendListScreen}/>
-            <Route path='/home' component={HomeScreen} />
-            <Route path='/inputfield' component={InputFieldScreen} />
-            <Route path='/karmacircle' component={KarmaCircleScreen} />
-            <Route path='/list' component={ListScreen} />
-            <Route path='/login' component={LoginScreen} />
-            <Route path='/markscreen' component={MarkScreen}/>
-            <Route path='/select' component={SelectScreen} />
+          <Route path='/event/:eventId' component={EventScreen}/>
+          <Route path='/eventcreation' component={EventCreationScreen}/>
+          <Route path='/eventselect' component={EventSelectScreen} />
+          <Route path='/login' component={LoginScreen} />
           </View>
         </Router>
       </Provider>
