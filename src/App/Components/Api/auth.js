@@ -7,6 +7,10 @@ export const methods = {
     url: `${baseAuthApiUrl}GetCurrentUserId`,
     method: 'GET',
   },
+  logout: {
+    url: '/accounts/logout/',
+    method: 'POST',
+  },
 };
 
 Object.keys(methods).forEach((key) => {
