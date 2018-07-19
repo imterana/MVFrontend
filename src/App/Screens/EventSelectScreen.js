@@ -5,6 +5,7 @@ import {Redirect} from 'react-router';
 import {NavigationScreen} from 'Navigation';
 import {events, auth} from 'Components/Api';
 import {SearchField, BigListView, LightButton} from 'Components';
+import {formatEventTime} from 'Misc';
 
 /**
  * Event selection screen.
@@ -29,7 +30,7 @@ export default class EventSelectScreen extends Component {
   }
 
   /**
-   * fetch current userId and joined events for current user
+   * Fetch current userId and joined events for current user.
    */
   componentDidMount() {
     auth.getCurrentUserId().then(this.updateUserId.bind(this));
@@ -37,7 +38,7 @@ export default class EventSelectScreen extends Component {
   }
 
   /**
-   * set this.state.userId to current user id
+   * Set this.state.userId to current user id.
    * @param {JSON} response - response from backend
    */
   updateUserId(response) {
@@ -48,8 +49,8 @@ export default class EventSelectScreen extends Component {
   }
 
   /**
-   * initialize this.state.joinedEvents datasource with
-   * user's joined events
+   * Initialize this.state.joinedEvents datasource with
+   * user's joined events.
    * @param {Array} events - response from backend
    */
   addJoinedEvents(events) {
@@ -63,8 +64,8 @@ export default class EventSelectScreen extends Component {
   }
 
   /**
-   * make events BigListView-friendly, i.e. chronologically
-   * sort them and set members to be used by BigListView
+   * Make events BigListView-friendly, i.e. chronologically
+   * sort them and set members to be used by BigListView.
    * @param {Array} events - response from backend
    * @return {Array} BigListView-friendly events
    */
@@ -72,44 +73,12 @@ export default class EventSelectScreen extends Component {
     const sortedEvents = chronologicallySortEvents(events);
     return sortedEvents.map((event) => ({
       title: event.name.substring(event.name.indexOf(':') + 1),
-      subtitle: this.formatTime(
+      subtitle: formatEventTime(
         new Date(event.time_from * 1000), // as Date uses timestamp
         new Date(event.time_to * 1000) //    in milliseconds
       ),
       onPress: this.generateSetSelectedEvent(event.event_id).bind(this),
     }));
-  }
-
-  /**
-   * @param {Array} events - backend response
-   * @return {Array} sorted events sorted in chronological order
-   */
-  chronologicallySortEvents(events) {
-    return events.sort((event1, event2) =>
-      (event1.time_from - event2.time_from));
-  }
-
-  /**
-   * @param {Date} timeFrom - start time
-   * @param {Date} timeTo - end time
-   * @return {String} "DD.MM HH:MM - HH:MM" formated time of event
-   */
-  formatTime(timeFrom, timeTo) {
-    const day = timeFrom.getDate();
-    const month = timeFrom.getMonth() < 9 ?
-      '0' + (timeFrom.getMonth() + 1) : timeFrom.getMonth() + 1;
-    const hoursFrom = timeFrom.getHours() < 10 ?
-      '0' + timeFrom.getHours() : timeFrom.getHours();
-    const minutesFrom = timeFrom.getMinutes() < 10 ?
-      '0' + timeFrom.getMinutes() : timeFrom.getMinutes();
-    const hoursTo = timeTo.getHours() < 10 ?
-      '0' + timeTo.getHours() : timeTo.getHours();
-    const minutesTo = timeTo.getMinutes() < 10 ?
-      '0' + timeTo.getMinutes() : timeTo.getMinutes();
-
-    return '' + day + '.' + month + ' ' +
-      hoursFrom + ':' + minutesFrom + ' - ' +
-      hoursTo + ':' + minutesTo;
   }
 
   /**
@@ -120,6 +89,15 @@ export default class EventSelectScreen extends Component {
     return () => {
       this.setState({selectedEvent: eventId});
     };
+  }
+
+  /**
+   * @param {Array} events - backend response
+   * @return {Array} sorted events sorted in chronological order
+   */
+  chronologicallySortEvents(events) {
+    return events.sort((event1, event2) =>
+      (event1.time_from - event2.time_from));
   }
 
   /**

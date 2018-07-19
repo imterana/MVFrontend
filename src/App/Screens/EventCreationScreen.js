@@ -80,7 +80,7 @@ export default class EventCreationScreen extends Component {
   }
 
   /**
-   * @return {String} event name from stream and title
+   * @return {String} formatted event name from stream and title
    */
   composeEventNameFromStreamAndTitle() {
     return this.state.stream + ':' + this.state.title;

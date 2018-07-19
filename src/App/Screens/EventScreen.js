@@ -9,6 +9,7 @@ import {events, profile, auth, websocketHost} from 'Components/Api';
 import {AvatarView, Button, IconSymbol, SmallListView} from 'Components';
 import {DefaultText, TitleText} from 'Components/Text';
 import StyleConstants from 'StyleConstants';
+import {formatEventDate} from 'Misc';
 
 /**
  * Event screen.
@@ -31,7 +32,6 @@ export default class EventScreen extends Component {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
-    this.removeEvent = this.removeEvent.bind(this);
     this.state = {
       eventId: eventId,
       eventName: 'NoName',
@@ -50,32 +50,32 @@ export default class EventScreen extends Component {
         {
           title: 'Удалить пару',
           subtitle: null,
-          onPress: this.removeEvent,
+          onPress: this.removeEvent.bind(this),
         },
       ]),
     };
 
-    this.formatEventDate = this.formatEventDate.bind(this);
     this.onRequestMarkPress = this.onRequestMarkPress.bind(this);
-    this.onSocketOpen = this.onSocketOpen.bind(this);
     this.onSocketMessage = this.onSocketMessage.bind(this);
+    this.updateUserId = this.updateUserId.bind(this);
+    this.parseEventData = this.parseEventData.bind(this);
   }
 
   /**
-   * fetch current useId and event info
+   * Fetch current userId and event info.
    */
   componentDidMount() {
     events.getEventByID({
       event_id: eventId,
-    }).then(this.parseEventData.bind(this))
+    }).then(this.parseEventData)
       .catch((err) => {
         alert(err.message);
       });
-    auth.getCurrentUserId().then(this.updateUserId.bind(this));
+    auth.getCurrentUserId().then(this.updateUserId);
   }
 
   /**
-   * parses event data and stores it in this.state
+   * Parses event data and stores it in this.state.
    * @param {JSON} event - event data
    */
   parseEventData(event) {
@@ -103,8 +103,8 @@ export default class EventScreen extends Component {
   }
 
   /**
-    * removing 'stream:...' prefix
-    * @param {String} eventName - event name
+    * Removing 'stream:...' prefix.
+    * @param {String} eventName - event name in stream:title format
     * @return {String} event title (name without stream prefix)
     */
   removeStreamPrefixFrom(eventName) {
@@ -147,40 +147,17 @@ export default class EventScreen extends Component {
   }
 
   /**
-   * @return {string} "DD.MM.YYYY, HH:MM - HH:MM" formatted event time
-   */
-  formatEventDate() {
-    let year = this.state.date.getFullYear();
-    let month = this.state.date.getMonth() < 9 ?
-      '0' + (this.state.date.getMonth() + 1) : (this.state.date.getMonth() + 1);
-    let day = this.state.date.getDate() < 10 ?
-      '0' + this.state.date.getDate() : this.state.date.getDate();
-    let startTimeHour = this.state.timeFrom.getHours();
-    let startTimeMinutes = this.state.timeFrom.getMinutes() < 10 ?
-      '0' + this.state.timeFrom.getMinutes() :
-      this.state.timeFrom.getMinutes();
-    let endTimeHour = this.state.timeTo.getHours();
-    let endTimeMinutes = this.state.timeTo.getMinutes() < 10 ?
-      '0' + this.state.timeTo.getMinutes() :
-    this.state.timeTo.getMinutes();
-    return day + '.' + month + '.' + year + ', ' +
-      startTimeHour + ':' + startTimeMinutes + ' - ' +
-      endTimeHour + ':' + endTimeMinutes;
-  }
-
-  /**
-   * opens web socket
+   * Opens web socket.
    */
   onRequestMarkPress() {
     this.socket = new WebSocket(
       `ws:\/\/${websocketHost}:8080/ws/mark_me?event_id=${this.state.eventId}`
     );
-    this.socket.addEventListener('open', this.onSocketOpen);
     this.socket.addEventListener('message', this.onSocketMessage);
   }
 
   /**
-   * ready to mark button press handler
+   * Ready to mark button handler, redirects to event marking page.
    */
   onReadyPress() {
     this.setState({
@@ -190,7 +167,7 @@ export default class EventScreen extends Component {
   }
 
   /**
-   * socket message handler
+   * Socket message handler.
    * @param {JSON} event - socket event
    */
   onSocketMessage(event) {
@@ -207,14 +184,7 @@ export default class EventScreen extends Component {
   }
 
   /**
-   * socket open handler
-   */
-  onSocketOpen() {
-    console.log('web socket opened');
-  }
-
-  /**
-   * removes event, when responding button is pressed
+   * Removes event, when responding button is pressed.
    */
   removeEvent() {
     events.deleteEvent({
@@ -230,18 +200,19 @@ export default class EventScreen extends Component {
    * @return {React.Node} event screen
    */
   render() {
-    if (this.state.removed) {
+    const {date, timeFrom, timeTo, removed, redirect} = this.state;
+    if (removed) {
       return <Redirect push to={'/eventselect'}/>;
     }
-    if (this.state.redirect) {
-      return <Redirect push to={this.state.redirect}/>;
+    if (redirect) {
+      return <Redirect push to={redirect}/>;
     }
     return (
       <NavigationScreen title={this.state.eventName}>
         <View style={styles.delimer}/>
         <View style={styles.dateContainer}>
           <TitleText style={{color: 'white'}}>
-            {this.formatEventDate()}
+            {formatEventDate(date, timeFrom, timeTo)}
           </TitleText>
         </View>
         <Creator info={this.state.creator}/>
