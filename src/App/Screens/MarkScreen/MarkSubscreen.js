@@ -7,9 +7,10 @@ import StyleConstants from 'StyleConstants';
 import {DefaultText} from 'Components/Text';
 
 /**
- * Mark screen.
+ * User marking detail subscreen.
+ * @class MarkSubscreen
  */
-export default class MarkUserMarkSubscreen extends Component {
+export default class MarkSubscreen extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     bio: PropTypes.string,

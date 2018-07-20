@@ -6,9 +6,10 @@ import {FriendList} from 'Components';
 import {AltText} from 'Components/Text';
 
 /**
- * A subscreen with user table.
+ * A marking subscreen with user table.
+ * @class ListSubscreen
  */
-export default class MarkUserListSubscreen extends Component {
+export default class ListSubscreen extends Component {
   /**
    * @param {Props} props - the props.
    */
