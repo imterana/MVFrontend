@@ -1,7 +1,15 @@
 import {AppRegistry} from 'react-native';
 import App from './src/App/App';
 
-AppRegistry.registerComponent('MarkAsVisited', () => App);
+/**
+ * Component provider function for AppRegistry.
+ * @return {React.Component} - the application.
+ */
+function componentProvider() {
+  return App;
+}
+
+AppRegistry.registerComponent('MarkAsVisited', componentProvider);
 
 if (window.document) {
   AppRegistry.runApplication('MarkAsVisited', {
