@@ -18,6 +18,8 @@ import {
 
 const store = createStore(markAsVisited);
 
+const debugMode = process.env.NODE_ENV !== 'development';
+
 /**
  * The primary app component. Contains all the routes to screens.
  * @class App
@@ -35,7 +37,7 @@ export default class App extends Component {
               store.getState().loggedIn ? <Redirect to='/eventselect/' />
                                         : <Redirect to='/login' />)}
             />
-            <Route path='/demo/' component={DemoScreen}/>
+            {debugMode && <Route path='/demo/' component={DemoScreen}/>}
             <Route path='/eventcreation' component={EventCreationScreen}/>
             <Route path='/eventselect' component={EventSelectScreen} />
             <Route path='/login' component={LoginScreen} />
