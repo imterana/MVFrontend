@@ -2,16 +2,16 @@ import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Redirect} from 'react-router';
 
-import {NavigationScreen} from '../Navigation';
+import {NavigationScreen} from 'Navigation';
 import {
   InputField,
   DateSelect,
   TimeSelect,
   LightButton,
-} from '../Components';
-import {TitleText} from '../Components/Text';
-import {events} from '../Components/Api';
-import StyleConstants from '../StyleConstants';
+} from 'Components';
+import {TitleText} from 'Components/Text';
+import {events} from 'Components/Api';
+import StyleConstants from 'StyleConstants';
 
 /**
  * Event creation screen.

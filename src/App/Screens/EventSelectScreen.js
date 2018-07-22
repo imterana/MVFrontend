@@ -3,7 +3,7 @@ import {StyleSheet, View, ListView} from 'react-native';
 import {Redirect} from 'react-router';
 
 import {NavigationScreen} from 'Navigation';
-import {events, auth} from 'Components/Api';
+import {events} from 'Components/Api';
 import {SearchField, BigListView, LightButton} from 'Components';
 import {formatEventTime} from 'Misc';
 
@@ -30,22 +30,19 @@ export default class EventSelectScreen extends Component {
   }
 
   /**
-   * Fetch current userId and joined events for current user.
+   * Get user id from redux.
+   * @param {Object} state - redux state
+   * @return {Object} object, that will be merged to props
    */
-  componentDidMount() {
-    auth.getCurrentUserId().then(this.updateUserId.bind(this));
-    events.getEvents().then(this.addJoinedEvents.bind(this));
+  mapStateToProps(state) {
+    return {userId: state.userId};
   }
 
   /**
-   * Set this.state.userId to current user id.
-   * @param {JSON} response - response from backend
+   * Fetch joined events for current user.
    */
-  updateUserId(response) {
-    if (response === null) {
-      return;
-    }
-    this.setState({userId: response.user_id});
+  componentDidMount() {
+    events.getEvents().then(this.addJoinedEvents.bind(this));
   }
 
   /**

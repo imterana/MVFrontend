@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import {Link} from 'RouterWrapper';
 import {NavigationScreen} from 'Navigation';
-import {events, profile, auth, websocketHost} from 'Components/Api';
+import {events, profile, websocketHost} from 'Components/Api';
 import {AvatarView, Button, IconSymbol, SmallListView} from 'Components';
 import {DefaultText, TitleText} from 'Components/Text';
 import StyleConstants from 'StyleConstants';
@@ -57,12 +57,20 @@ export default class EventScreen extends Component {
 
     this.onRequestMarkPress = this.onRequestMarkPress.bind(this);
     this.onSocketMessage = this.onSocketMessage.bind(this);
-    this.updateUserId = this.updateUserId.bind(this);
     this.parseEventData = this.parseEventData.bind(this);
   }
 
   /**
-   * Fetch current userId and event info.
+   * Get user id from redux.
+   * @param {Object} state - redux state
+   * @return {Object} object, that will be merged to props
+   */
+  mapStateToProps(state) {
+    return {userId: state.userId};
+  }
+
+  /**
+   * Fetch current event info from API.
    */
   componentDidMount() {
     events.getEventByID({
@@ -71,7 +79,6 @@ export default class EventScreen extends Component {
       .catch((err) => {
         alert(err.message);
       });
-    auth.getCurrentUserId().then(this.updateUserId);
   }
 
   /**
@@ -131,19 +138,6 @@ export default class EventScreen extends Component {
         },
       });
     };
-  }
-
-  /**
-   * @param {JSON} response - server response with user id
-   */
-  updateUserId(response) {
-    if (response === null) {
-      return;
-    }
-    this.setState({
-      ...this.state,
-      userId: response.user_id,
-    });
   }
 
   /**
