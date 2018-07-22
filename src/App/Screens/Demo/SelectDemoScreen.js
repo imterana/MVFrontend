@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 
 import {NavigationScreen} from 'Navigation';
 import Select from 'Components/Select';
-import {DateSelect, TimeSelect} from 'Components/';
+import {DateSelect, TimeSelect} from 'Components';
 
 /**
  * Select example screen.

@@ -9,11 +9,11 @@ import {IconSymbol} from 'Components';
 import StyleConstants from 'StyleConstants';
 
 const listElement = ({name, url}) => (
-          <Link to={url}>
-            <DefaultText>
-              {name}
-            </DefaultText>
-          </Link>
+  <Link to={url}>
+    <DefaultText>
+      {name}
+    </DefaultText>
+  </Link>
 );
 
 listElement.propTypes = {

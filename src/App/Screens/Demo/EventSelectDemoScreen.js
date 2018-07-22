@@ -4,7 +4,7 @@ import {NavigationScreen} from 'Navigation';
 import {SearchField, BigListView} from 'Components';
 
 /**
- * Event selection screen.
+ * Event selection demo screen.
  */
 export default class EventSelectScreenDemonstration extends Component {
   /**
@@ -41,6 +41,7 @@ export default class EventSelectScreenDemonstration extends Component {
       }),
     };
   }
+
   /**
    * @return {React.Node} A screen with search field and list.
    */

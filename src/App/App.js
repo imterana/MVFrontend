@@ -4,8 +4,8 @@ import {Redirect, Route} from 'react-router';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-import Router from './Router';
-import {markAsVisited} from './Reducers';
+import Router from 'Router';
+import {markAsVisited} from 'Reducers';
 
 import {
   DemoScreen,
@@ -18,7 +18,7 @@ import {
 
 const store = createStore(markAsVisited);
 
-const debugMode = process.env.NODE_ENV !== 'development';
+const debugMode = process.env.NODE_ENV === 'development';
 
 /**
  * The primary app component. Contains all the routes to screens.
