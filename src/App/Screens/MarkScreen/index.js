@@ -20,17 +20,17 @@ class EventMarkScreen extends Component {
    */
   constructor(props) {
     super(props);
-    this.eventId = this.props.match.params.eventId;
-    this.matchUrl = this.props.match.url;
     this.replaceUserList = this.replaceUserList.bind(this);
     this.addUserToList = this.addUserToList.bind(this);
     this.removeUserFromList = this.removeUserFromList.bind(this);
-    this.onSocketOpened = this.onSocketOpened.bind(this);
-    this.onSocketClosed = this.onSocketClosed.bind(this);
     this.onSocketMessage = this.onSocketMessage.bind(this);
     this.confirmUserMarking = this.confirmUserMarking.bind(this);
     this.prepareUserMarking = this.prepareUserMarking.bind(this);
     this.refuseUserMarking = this.refuseUserMarking.bind(this);
+
+    this.eventId = this.props.match.params.eventId;
+    this.matchUrl = this.props.match.url;
+
     this.state = {
       users: [],
       selectedUser: null,
@@ -60,8 +60,6 @@ class EventMarkScreen extends Component {
     this.socket = new WebSocket(
       `ws:\/\/${websocketHost}:8080/ws/marking?event_id=${this.eventId}`
     );
-    this.socket.addEventListener('open', this.onSocketOpened);
-    this.socket.addEventListener('close', this.onSocketClosed);
     this.socket.addEventListener('message', this.onSocketMessage);
     events.getEventByID({
       event_id: this.eventId,
@@ -74,22 +72,6 @@ class EventMarkScreen extends Component {
   static propTypes = {
     history: PropTypes.object,
     match: PropTypes.any,
-  }
-
-  /**
-   * Callback for opening the websocket.
-   * @param {Object} event - the event.
-   */
-  onSocketOpened(event) {
-    console.log('Socket opened');
-  }
-
-  /**
-   * Callback for closing the websocket.
-   * @param {Object} event - the event.
-   */
-  onSocketClosed(event) {
-    console.log('Socket closed');
   }
 
   /**
@@ -110,48 +92,72 @@ class EventMarkScreen extends Component {
         this.removeUserFromList(data.params.user_id);
         break;
       case 'prepared':
-        switch (data.result) {
-          case 'ok':
-            break;
-          case 'denial':
-            alert('Не удалось занять пользователя');
-            this.goBack();
-            break;
-          case 'error':
-            alert(data.error_msg);
-            this.goBack();
-            break;
-        };
+        this.onPreparedMessage(data);
         break;
       case 'marked':
-        switch (data.result) {
-          case 'ok':
-            alert(data.display_msg);
-            break;
-          case 'denial':
-            alert('Не удалось отметить пользователя');
-            this.resetUser();
-            break;
-          case 'error':
-            alert(data.error_msg);
-            this.resetUser();
-            break;
-        };
+        this.onMarkedMessage(data);
         break;
       default:
-        switch (data.result) {
-          case 'ok':
-            break;
-          case 'denial':
-            break;
-          case 'error':
-            alert(data.error_msg);
-            this.goBack();
-            break;
-          default:
-            alert(data.result);
-            break;
-        }
+        this.onUnknownMessage(data);
+    }
+  }
+
+  /**
+   * Action that occurs on receiving prepare message.
+   * @param {Object} data - Message data
+   */
+  onPreparedMessage(data) {
+    switch (data.result) {
+      case 'ok':
+        break;
+      case 'denial':
+        alert('Не удалось занять пользователя');
+        this.goBack();
+        break;
+      case 'error':
+        alert(data.message);
+        this.goBack();
+        break;
+    };
+  }
+
+  /**
+   * Action that occurs on receiving marked message.
+   * @param {Object} data - Message data
+   */
+  onMarkedMessage(data) {
+    switch (data.result) {
+      case 'ok':
+        alert(data.message);
+        break;
+      case 'denial':
+        alert('Не удалось отметить пользователя');
+        this.resetUser();
+        break;
+      case 'error':
+        alert(data.message);
+        this.resetUser();
+        break;
+    };
+  }
+
+  /**
+   * Action that occurs on receiving unknown message.
+   * @param {Object} data - Message data
+   */
+  onUnknownMessage(data) {
+    switch (data.result) {
+      case 'ok':
+        break;
+      case 'denial':
+        break;
+      case 'error':
+        alert(data.message);
+        this.goBack();
+        break;
+      default:
+        alert(data.message);
+        break;
     }
   }
 
