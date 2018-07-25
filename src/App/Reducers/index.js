@@ -1,5 +1,6 @@
 const initialState = {
-  userId: null,
+  // User ID from the backend, or null if the user isn't logged in.
+  userId: undefined,
 };
 
 const markAsVisited = (state = initialState, action) => {

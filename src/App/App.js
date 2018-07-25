@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Redirect, Route} from 'react-router';
-import {Provider} from 'react-redux';
+import PropTypes from 'prop-types';
+import {Redirect, Route, Switch} from 'react-router';
+import {connect, Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-import Router from './Router';
-import {markAsVisited} from './Reducers';
+import Router from 'Router';
+import {markAsVisited} from 'Reducers';
+import {setUserId} from 'Actions';
+import {auth} from 'Components/Api';
 
 import {
     AboutScreen,
@@ -30,22 +33,40 @@ import {
 const store = createStore(markAsVisited);
 
 /**
- * The primary app component. Contains all the routes to screens.
- * @class App
+ * The primary app component. Responsible for setting the logged in state and
+ * rendering the loading screen.
+ * @class AppContainer
  */
-export default class App extends Component {
+class AppContainer extends Component {
+  static propTypes = {
+    setUserId: PropTypes.Function,
+    userId: PropTypes.Number,
+  }
+
   /**
-   * @return  {React.Node} Router with all possible routes in it.
+   * Set the logged in state for user.
+   */
+  componentDidMount() {
+    auth.getCurrentUserId().then((response)=>{
+      const userId = response != null ? response.user_id : null;
+      this.props.setUserId(userId);
+    });
+  }
+
+  /**
+   * @return  {React.Node} Router with all possible top-level routes in it.
    */
   render() {
+    const {userId} = this.props;
+    if (userId === undefined) {
+      return null;
+    }
+    const shouldRedirectToLogin = userId === null;
     return (
-      <Provider store={store}>
-        <Router>
+      <Router>
+        <Switch>
           <View style={styles.container}>
-            <Route exact path="/" render={() => (
-              store.getState().loggedIn ? <Redirect to='/home/' />
-                                        : <Redirect to='/login' />)}
-            />
+            <Route exact path="/" render={()=><Redirect to='/home' />} />
             <Route path='/about' component={AboutScreen} />
             <Route path='/avatar' component={AvatarScreen} />
             <Route path='/button' component={ButtonScreen} />
@@ -59,15 +80,38 @@ export default class App extends Component {
             <Route path='/inputfield' component={InputFieldScreen} />
             <Route path='/karmacircle' component={KarmaCircleScreen} />
             <Route path='/list' component={ListScreen} />
-            <Route path='/login' component={LoginScreen} />
+            <Route path='/login' render={() => (userId ? <Redirect to='/' />
+                                                       : <LoginScreen />)} />
             <Route path='/markscreen' component={MarkScreen}/>
             <Route path='/select' component={SelectScreen} />
+            {shouldRedirectToLogin && <Redirect to='/login' />}
           </View>
-        </Router>
-      </Provider>
+        </Switch>
+      </Router>
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  userId: state.userId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setUserId: (userId) => {
+    dispatch(setUserId(userId));
+  },
+});
+
+const ConnectedAppContainer = connect(mapStateToProps,
+                                      mapDispatchToProps)(AppContainer);
+
+const StoreWrapper = () => (
+  <Provider store={store}>
+    <ConnectedAppContainer />
+  </Provider>
+);
+
+export default StoreWrapper;
 
 const styles = StyleSheet.create({
   container: {
