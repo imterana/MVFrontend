@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {ListView, View, StyleSheet} from 'react-native';
 
-import {FriendList} from '../Components';
-import {NavigationScreen} from '../Navigation';
+import {FriendList} from 'Components';
+import {NavigationScreen} from 'Navigation';
 
 /**
  * A screen demonstrating FriendList.

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 
-import {NavigationScreen} from '../Navigation';
-import {Button, ButtonRow} from '../Components';
+import {NavigationScreen} from 'Navigation';
+import {Button, ButtonRow} from 'Components';
 
 /**
  * Button example screen.
