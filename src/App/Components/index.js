@@ -9,6 +9,7 @@ export {default as FriendList} from './FriendList';
 export {default as IconSymbol} from './IconSymbol';
 export {default as InputField} from './InputField';
 export {default as KarmaCircle} from './KarmaCircle';
+export {default as LightButton} from './LightButton';
 export {default as SearchField} from './SearchField';
 export {default as Select} from './Select';
 export {default as SmallListView} from './SmallListView';

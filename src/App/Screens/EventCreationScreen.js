@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Redirect} from 'react-router';
 
-import {NavigationScreen} from '../Navigation';
+import {NavigationScreen} from 'Navigation';
 import {
   InputField,
   DateSelect,
   TimeSelect,
-} from '../Components';
-import {DefaultText, TitleText} from '../Components/Text';
-import {events} from '../Components/Api';
-import StyleConstants from '../StyleConstants';
+  LightButton,
+} from 'Components';
+import {TitleText} from 'Components/Text';
+import {events} from 'Components/Api';
+import StyleConstants from 'StyleConstants';
 
 /**
  * Event creation screen.
@@ -22,10 +24,11 @@ export default class EventCreationScreen extends Component {
     super(props);
     this.state = {
       stream: '',
-      name: '',
+      title: '',
       date: new Date(),
-      startTime: new Date(),
-      endTime: new Date(),
+      timeFrom: new Date(),
+      timeTo: new Date(),
+      redirect: null,
     };
 
     this.handleStreamChange = this.handleStreamChange.bind(this);
@@ -33,6 +36,8 @@ export default class EventCreationScreen extends Component {
     this.onDateChange = this.onDateChange.bind(this);
     this.onStartTimeChange = this.onStartTimeChange.bind(this);
     this.onEndTimeChange = this.onEndTimeChange.bind(this);
+    this.composeEventNameFromStreamAndTitle =
+      this.composeEventNameFromStreamAndTitle.bind(this);
     this.createEvent = this.createEvent.bind(this);
   }
 
@@ -63,7 +68,7 @@ export default class EventCreationScreen extends Component {
    */
   onStartTimeChange(newStartTime) {
     newStartTime = new Date(newStartTime);
-    this.setState({startTime: newStartTime});
+    this.setState({timeFrom: newStartTime});
   }
 
   /**
@@ -71,24 +76,59 @@ export default class EventCreationScreen extends Component {
    */
   onEndTimeChange(newEndTime) {
     newEndTime = new Date(newEndTime);
-    this.setState({endTime: newEndTime});
+    this.setState({timeTo: newEndTime});
+  }
+
+  /**
+   * @return {String} formatted event name from stream and title
+   */
+  composeEventNameFromStreamAndTitle() {
+    return this.state.stream + ':' + this.state.title;
+  }
+
+  /**
+   * @param {Date} date - date
+   * @param {Date} time - time
+   * @return {Number} timestamp - time in seconds since Jan 01, 1970
+   */
+  unixTimestampFromDateAndTime(date, time) {
+    date = dateWithHoursAndMinutesAccordingToTime(date, time);
+    return Math.floor(date.valueOf() / 1000); // as JS Date uses timestamp in ms
+  }
+
+  /**
+   * @param {Date} date - date
+   * @param {Date} time - time
+   * @return {Date} date with hours and minutes set according to time
+   */
+  dateWithHoursAndMinutesAccordingToTime(date, time) {
+    date.setHours(time.getHours());
+    date.setMinutes(time.getMinutes());
+    return date;
   }
 
   /**
    * Create event button press handler.
    */
   createEvent() {
-    if (this.state.endTime < this.state.startTime) {
+    if (this.state.timeTo <= this.state.timeFrom) {
       alert('Время окончания события должно быть больше времения начала.');
       return;
     }
-    const eventName = this.state.stream + ':' + this.state.name;
-    const timeFrom = Math.floor(this.state.startTime.valueOf() / 1000);
-    const timeTo = Math.floor(this.state.endTime.valueOf() / 1000);
+    const eventName = composeEventNameFromStreamAndTitle();
+    const timeFrom = unixTimestampFromDateAndTime(
+      this.state.date, this.state.timeFrom);
+    const timeTo = unixTimestampFromDateAndTime(
+      this.state.date, this.state.timeTo);
     events.createEvent({
       name: eventName,
       time_from: timeFrom,
       time_to: timeTo,
+    }).then((res) => {
+      this.setState({
+        ...this.state,
+        redirect: res.event_id,
+      });
     }).catch((err) => {
       alert(err.message);
     });
@@ -98,9 +138,11 @@ export default class EventCreationScreen extends Component {
    * @return {React.Node} event creation screen
    */
   render() {
+    const {redirect} = this.state;
     return (
       <NavigationScreen title={'Создание пары'}>
         <View style={styles.eventCreationContainer}>
+        {redirect && <Redirect to={`/event/${redirect}`} />}
           <View>
             <InputField
               placeholder={'Поток'}
@@ -116,11 +158,19 @@ export default class EventCreationScreen extends Component {
               <View style={styles.titleContainer}>
                 <TitleText
                   style={styles.titleStyle}>
-                  Начало
+                  Дата
                 </TitleText>
               </View>
               <View style={styles.selectContainer}>
                 <DateSelect onDateChange={this.onDateChange}/>
+              </View>
+              </View>
+            <View style={{flexDirection: 'row', paddingTop: 10}}>
+              <View style={styles.titleContainer}>
+                <TitleText
+                  style={styles.titleStyle}>
+                  Начало
+                </TitleText>
               </View>
               <View style={styles.selectContainer}>
                 <TimeSelect onTimeChange={this.onStartTimeChange}/>
@@ -139,14 +189,10 @@ export default class EventCreationScreen extends Component {
             </View>
           </View>
           <View style={{alignItems: 'center', marginTop: 100}}>
-            <TouchableOpacity
+          <LightButton
+              label={'Создать'}
               onPress={this.createEvent}
-              disabled={!this.state.name}
-              style={styles.lightButtonContainer}>
-              <DefaultText style={{color: StyleConstants.ALT_BACKGROUND_COLOR}}>
-                Создать
-              </DefaultText>
-            </TouchableOpacity>
+              disabled={!this.state.title}/>
           </View>
         </View>
       </NavigationScreen>
@@ -180,16 +226,5 @@ const styles = StyleSheet.create({
     flex: 0,
     width: 120,
     paddingLeft: 40,
-  },
-  lightButtonContainer: {
-    flex: 0,
-    width: 120,
-    height: 25,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    borderRadius: StyleConstants.BORDER_RADIUS,
-    borderColor: StyleConstants.BORDER_COLOR,
-    borderWidth: 1,
   },
 });
