@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
-import {NavigationScreen} from '../Navigation';
-import {KarmaCircle} from '../Components';
+import {NavigationScreen} from 'Navigation';
+import {KarmaCircle} from 'Components';
 
 /**
  * KarmaCircle example screen.

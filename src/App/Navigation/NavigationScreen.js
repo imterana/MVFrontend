@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Platform} from 'react-native';
 import {withRouter} from 'react-router-dom';
 
 import {IconSymbol} from 'Components';
@@ -57,12 +57,21 @@ class NavigationScreen extends Component {
   }
 
   /**
+   * Determines if right control of navbar is a hamburger menu
+   * or a "go back" button.
+   * @return {Boolean} - if right control is a hamburger menu
+   */
+  shouldRenderHamburger() {
+    return this.props.hamburger || Platform.OS === 'web';
+  }
+
+  /**
    * Determines the handler for the left control of the navigation bar:
    * either hamburger menu toggle or the go back in history action.
    * @return {function} A left control click handler.
    */
   leftControlAction() {
-    if (this.props.hamburger) {
+    if (this.shouldRenderHamburger()) {
       return this.onHamburgerPress.bind(this);
     } else {
       return this.context.router.history.goBack;
@@ -81,7 +90,7 @@ class NavigationScreen extends Component {
         leftControl={(
           <NavButton onPress={leftFunction}>
             <View style={style.buttonContainer}>
-              {this.props.hamburger
+              {this.shouldRenderHamburger()
                   ? <IconSymbol name='menu' style={style.symbol}/>
                   : <IconSymbol name='arrow-left2' style={style.symbol}/>}
             </View>
