@@ -13,6 +13,7 @@ import {
   EventSelectScreen,
   LoginScreen,
   SelectScreen,
+  MarkScreen,
 } from './Screens';
 
 
@@ -41,6 +42,7 @@ export default class App extends Component {
             <Route path='/eventcreation' component={EventCreationScreen}/>
             <Route path='/eventselect' component={EventSelectScreen} />
             <Route path='/login' component={LoginScreen} />
+            <Route path='/mark/:eventId' component={MarkScreen} />
             <Route path='/select' component={SelectScreen} />
           </View>
         </Router>

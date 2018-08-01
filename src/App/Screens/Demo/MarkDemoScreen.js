@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {NavigationScreen} from 'Navigation';
 
-import MarkUserMarkSubscreen from '../MarkUserMarkSubscreen';
+import MarkUserMarkSubscreen from '../MarkScreen/MarkSubscreen';
 
 /**
  * Mark screen.

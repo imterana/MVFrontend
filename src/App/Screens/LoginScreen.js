@@ -53,7 +53,7 @@ class LoginScreen extends Component {
     const {loggedIn} = this.props;
     return (
       <View style={style.container}>
-        {loggedIn && <Redirect to='/home/' />}
+        {loggedIn && <Redirect to='/eventselect/' />}
         <View style={style.logoContainer}>
           <Image
             source={logo}
