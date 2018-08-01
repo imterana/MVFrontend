@@ -21,7 +21,6 @@ export default class EventSelectScreen extends Component {
       sectionHeaderHasChanged: (r1, r2)=>r1!==r2,
     });
     this.state = {
-      userId: undefined,
       joinedEvents: this.ds.cloneWithRowsAndSections({}),
       selectedEvent: null,
       createEvent: false,
@@ -29,14 +28,6 @@ export default class EventSelectScreen extends Component {
     this.onCreateEventPress = this.onCreateEventPress.bind(this);
   }
 
-  /**
-   * Get user id from redux.
-   * @param {Object} state - redux state
-   * @return {Object} object, that will be merged to props
-   */
-  mapStateToProps(state) {
-    return {userId: state.userId};
-  }
 
   /**
    * Fetch joined events for current user.
@@ -52,9 +43,9 @@ export default class EventSelectScreen extends Component {
    */
   addJoinedEvents(events) {
     const eventsArray =
-      bigListViewFriendlyEventsFromBackendResponse(events).bind(this);
+      this.bigListViewFriendlyEventsFromBackendResponse(events);
     this.setState({
-      dataSource: this.ds.cloneWithRowsAndSections({
+      joinedEvents: this.ds.cloneWithRowsAndSections({
         'События': eventsArray,
       }),
     });
@@ -67,7 +58,7 @@ export default class EventSelectScreen extends Component {
    * @return {Array} BigListView-friendly events
    */
   bigListViewFriendlyEventsFromBackendResponse(events) {
-    const sortedEvents = chronologicallySortEvents(events);
+    const sortedEvents = this.chronologicallySortEvents(events);
     return sortedEvents.map((event) => ({
       title: event.name.substring(event.name.indexOf(':') + 1),
       subtitle: formatEventTime(
@@ -108,10 +99,11 @@ export default class EventSelectScreen extends Component {
    * @return {React.Node} A screen with search field and list.
    */
   render() {
-    if (this.state.selectedEvent !== null) {
-      return <Redirect push to={`/event/${this.state.selectedEvent}`}/>;
+    const {selectedEvent, createEvent, joinedEvents} = this.state;
+    if (selectedEvent !== null) {
+      return <Redirect push to={`/event/${selectedEvent}`}/>;
     }
-    if (this.state.createEvent) {
+    if (createEvent) {
       return <Redirect push to={'/eventcreation'}/>;
     }
     return (
@@ -120,7 +112,7 @@ export default class EventSelectScreen extends Component {
           <SearchField />
           <View style={style.Separator}/>
           <BigListView
-            dataSource={this.state.joinedEvents}
+            dataSource={joinedEvents}
             withHeaders={true}
           />
         </View>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity, ListView} from 'react-native';
 import {Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import {Link} from 'RouterWrapper';
 import {NavigationScreen} from 'Navigation';
@@ -14,9 +15,10 @@ import {formatEventDate} from 'Misc';
 /**
  * Event screen.
  */
-export default class EventScreen extends Component {
+class EventScreen extends Component {
   static propTypes = {
     match: PropTypes.any,
+    userId: PropTypes.Number,
   }
 
   /**
@@ -44,7 +46,6 @@ export default class EventScreen extends Component {
         photo: null,
         isVerified: false,
       },
-      userId: null,
       removed: false,
       controlPanelDataSource: ds.cloneWithRows([
         {
@@ -61,24 +62,24 @@ export default class EventScreen extends Component {
   }
 
   /**
-   * Get user id from redux.
-   * @param {Object} state - redux state
-   * @return {Object} object, that will be merged to props
-   */
-  mapStateToProps(state) {
-    return {userId: state.userId};
-  }
-
-  /**
    * Fetch current event info from API.
    */
   componentDidMount() {
     events.getEventByID({
-      event_id: eventId,
+      event_id: this.state.eventId,
     }).then(this.parseEventData)
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  /**
+   * Close notification websocket (if open).
+   */
+  componentWillUnmount() {
+    if (this.socket !== undefined) {
+      this.socket.close();
+    }
   }
 
   /**
@@ -89,8 +90,8 @@ export default class EventScreen extends Component {
     if (event === null) {
       return;
     }
-    fetchCreatorInfo(event);
-    const eventName = removeStreamPrefixFrom(event.name);
+    this.fetchCreatorInfo(event);
+    const eventName = this.removeStreamPrefixFrom(event.name);
     this.setState({
       ...this.state,
       eventName: eventName,
@@ -115,7 +116,7 @@ export default class EventScreen extends Component {
     * @return {String} event title (name without stream prefix)
     */
   removeStreamPrefixFrom(eventName) {
-    return eventName.substring(event.name.indexOf(':') + 1);
+    return eventName.substring(eventName.indexOf(':') + 1);
   }
 
   /**
@@ -221,7 +222,7 @@ export default class EventScreen extends Component {
         <View style={styles.requestMarkContainer}>
           <Button label={'ОТМЕТЬТЕ МЕНЯ'} onPress={this.onRequestMarkPress}/>
         </View>
-        {this.state.userId === this.state.creator.userId &&
+        {this.props.userId === this.state.creator.userId &&
           <View style={styles.controlPanelContainer}>
             <SmallListView
               title={'Управление'}
@@ -232,6 +233,15 @@ export default class EventScreen extends Component {
     );
   }
 }
+
+
+const mapStateToProps = (state) => ({
+  userId: state.userId,
+});
+
+const ConnectedEventScreen = connect(mapStateToProps)(EventScreen);
+
+export default ConnectedEventScreen;
 
 /**
  * Custom creator info display.
